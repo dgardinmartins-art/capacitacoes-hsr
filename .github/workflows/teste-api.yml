@@ -1,0 +1,77 @@
+name: Teste da API
+
+# Roda só quando alguém pede (aba Actions > Teste da API > Run workflow).
+# Confere, de fora, se o banco responde, se recusa quem não está logado e se o navegador é aceito.
+# Não usa PIN nem senha de ninguém e não grava nada. O registro não mostra nomes.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  teste:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Conferir a API
+        env:
+          BASE: https://cdofbzcykbyyaylvtlks.supabase.co/rest/v1
+          CHAVE: sb_publishable_U0m9Jvii9BSvE3-yta2D9A_uU2Y98C7
+          T: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        run: |
+          falhas=0
+          confere() { # funcao, corpo, status esperado, trecho esperado, mostrar corpo (s/n)
+            st=$(curl -sS -o /tmp/r.json -w '%{http_code}' -X POST "$BASE/rpc/$1" -H "apikey: $CHAVE" -H "Content-Type: application/json" -d "$2")
+            if [ "$st" = "$3" ] && grep -q "$4" /tmp/r.json; then
+              echo "ok: $1 -> $st"
+            else
+              falhas=$((falhas+1))
+              if [ "$5" = "s" ]; then echo "FALHOU: $1 -> $st $(head -c 300 /tmp/r.json)"; else echo "FALHOU: $1 -> $st"; fi
+            fi
+          }
+          confere cap_nomes '{}' 200 '"adm"' n
+          confere cap_ping '{}' 200 '"ok"' s
+          confere cap_entrar '{"p_pessoa":0,"p_pin":"0000","p_device":"teste","p_admin":false}' 200 '"pessoa"' s
+          confere cap_verificar '{"p_codigo":"HSR-AAAA-AAAA"}' 200 'false' s
+          confere cap_sair "{\"p_token\":\"$T\"}" 200 '"ok"' s
+          confere cap_inicio "{\"p_token\":\"$T\"}" 400 'SESSAO' s
+          confere cap_abrir "{\"p_token\":\"$T\",\"p_curso\":1}" 400 'SESSAO' s
+          confere cap_cartao "{\"p_token\":\"$T\",\"p_curso\":1,\"p_ordem\":1}" 400 'SESSAO' s
+          confere cap_quiz "{\"p_token\":\"$T\",\"p_curso\":1}" 400 'SESSAO' s
+          confere cap_responder "{\"p_token\":\"$T\",\"p_tentativa\":1,\"p_respostas\":[0,1,2,3,0]}" 400 'SESSAO' s
+          confere cap_comprovante "{\"p_token\":\"$T\",\"p_curso\":1}" 400 'SESSAO' s
+          confere cap_adm_painel "{\"p_token\":\"$T\",\"p_mes\":null}" 400 'SESSAO' s
+          confere cap_adm_pessoas "{\"p_token\":\"$T\",\"p_mes\":\"2026-11-01\"}" 400 'SESSAO' s
+          confere cap_adm_detalhe "{\"p_token\":\"$T\",\"p_pessoa\":1,\"p_curso\":1}" 400 'SESSAO' s
+          confere cap_adm_salvar_pessoa "{\"p_token\":\"$T\",\"p_dados\":{\"id\":1,\"aniversario\":\"0101\"}}" 400 'SESSAO' s
+          confere cap_adm_afastar "{\"p_token\":\"$T\",\"p_pessoa\":1,\"p_mes\":\"2026-11-01\",\"p_afastado\":true,\"p_motivo\":\"\"}" 400 'SESSAO' s
+          confere cap_adm_cursos "{\"p_token\":\"$T\"}" 400 'SESSAO' s
+          confere cap_adm_curso "{\"p_token\":\"$T\",\"p_id\":1}" 400 'SESSAO' s
+          confere cap_adm_curso_status "{\"p_token\":\"$T\",\"p_id\":1,\"p_status\":null,\"p_fecha_em\":\"2026-12-31\"}" 400 'SESSAO' s
+          confere cap_adm_relatorio "{\"p_token\":\"$T\",\"p_ini\":\"2026-11-01\",\"p_fim\":\"2026-11-30\"}" 400 'SESSAO' s
+          confere cap_adm_senha "{\"p_token\":\"$T\",\"p_atual\":\"a\",\"p_nova\":\"bbbbbbbb\"}" 400 'SESSAO' s
+
+          echo "--- tabelas não podem ser lidas direto"
+          for alvo in "pessoas?select=*" "cursos?select=*" "tentativas?select=*"; do
+            st=$(curl -sS -o /tmp/t.json -w '%{http_code}' "$BASE/$alvo" -H "apikey: $CHAVE")
+            if [ "$st" = "200" ]; then echo "FALHOU: tabela $alvo respondeu 200"; falhas=$((falhas+1)); else echo "ok: $alvo -> $st"; fi
+            st=$(curl -sS -o /tmp/t.json -w '%{http_code}' "$BASE/$alvo" -H "apikey: $CHAVE" -H "Accept-Profile: cap")
+            if [ "$st" = "200" ]; then echo "FALHOU: schema cap exposto em $alvo"; falhas=$((falhas+1)); else echo "ok: $alvo (schema cap) -> $st"; fi
+          done
+
+          echo "--- navegador (CORS) a partir do endereço do aplicativo"
+          curl -sS -o /dev/null -D /tmp/h.txt -X OPTIONS "$BASE/rpc/cap_nomes" \
+            -H "Origin: https://dgardinmartins-art.github.io" \
+            -H "Access-Control-Request-Method: POST" \
+            -H "Access-Control-Request-Headers: apikey,content-type"
+          grep -i '^HTTP\|^access-control' /tmp/h.txt || true
+          if grep -qi '^access-control-allow-origin: \(\*\|https://dgardinmartins-art.github.io\)' /tmp/h.txt \
+             && grep -i '^access-control-allow-headers' /tmp/h.txt | grep -qi 'apikey' \
+             && grep -i '^access-control-allow-headers' /tmp/h.txt | grep -qi 'content-type'; then
+            echo "ok: navegador aceito"
+          else
+            echo "FALHOU: CORS"; falhas=$((falhas+1))
+          fi
+
+          echo "falhas: $falhas"
+          test "$falhas" = "0"
