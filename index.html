@@ -195,6 +195,11 @@ const CFG = Object.assign({
   espera: null            // segundos mínimos em cada cartão novo; null = conforme o tamanho do texto
 }, window.CAP_CFG || {});
 
+// navegadores antigos
+if (!Element.prototype.replaceChildren) {
+  Element.prototype.replaceChildren = function (...nos) { while (this.lastChild) this.removeChild(this.lastChild); this.append(...nos); };
+}
+
 const app = document.getElementById('app');
 const topoAcoes = document.getElementById('topo-acoes');
 const S = { token: null, nome: null, adm: null, admNome: null, admMes: null, admAba: null,
