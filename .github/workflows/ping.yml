@@ -1,0 +1,27 @@
+name: Manter o banco ativo
+
+on:
+  schedule:
+    - cron: '23 2,8,14,20 * * *'
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Tocar o banco
+        env:
+          URL: https://cdofbzcykbyyaylvtlks.supabase.co/rest/v1/rpc
+          CHAVE: sb_publishable_U0m9Jvii9BSvE3-yta2D9A_uU2Y98C7
+        run: |
+          curl -fsS --retry 3 -X POST "$URL/cap_ping" -H "apikey: $CHAVE" -H "Content-Type: application/json" -d '{}'
+          echo
+          curl -fsS --retry 3 -X POST "$URL/cap_nomes" -H "apikey: $CHAVE" -H "Content-Type: application/json" -d '{}' -o /dev/null
+      - name: Manter esta rotina ligada
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/ping.yml/enable"

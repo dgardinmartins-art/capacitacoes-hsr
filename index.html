@@ -1,0 +1,1116 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#123f6b">
+<title>Capacitações - Hospital São Roque</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23123f6b'/%3E%3Crect x='7' y='9' width='18' height='15' rx='2' fill='%23fff'/%3E%3Crect x='7' y='6' width='9' height='5' rx='2' fill='%231b7a45'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul:#1d5a96; --azul-escuro:#123f6b; --azul-claro:#e4eef8;
+  --tinta:#10263b; --tinta-suave:#4a5d70;
+  --fundo:#edf2f7; --papel:#fff; --linha:#c5d3e0;
+  --verde:#1b7a45; --verde-claro:#e2f3e9;
+  --amarelo:#f4b400; --amarelo-claro:#fff3c4; --amarelo-tinta:#6e5200;
+  --vermelho:#b3261e; --vermelho-claro:#fbe9e7;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{font-size:112.5%;-webkit-text-size-adjust:100%}
+html.grande{font-size:137.5%}
+body{margin:0;background:var(--fundo);color:var(--tinta);font-family:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.45}
+button,input,select{font:inherit;color:inherit}
+h1{font-size:1.7rem;line-height:1.15;margin:.2rem 0 .6rem}
+h2{font-size:1.25rem;line-height:1.2;margin:1.4rem 0 .5rem}
+p{margin:.5rem 0}
+:focus-visible{outline:3px solid var(--amarelo);outline-offset:2px}
+[hidden]{display:none!important}
+
+.topo{display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.55rem 1rem;background:var(--azul-escuro);color:#fff}
+.topo .marca{font-weight:700;font-size:1rem;line-height:1.15}
+.topo .marca span{display:block;font-weight:400;font-size:.8rem;opacity:.85}
+.topo .acoes{display:flex;gap:.4rem;flex:none}
+.topo button{background:transparent;border:1.5px solid rgba(255,255,255,.65);color:#fff;border-radius:.45rem;padding:.35rem .65rem;font-size:.85rem;cursor:pointer}
+
+#app{max-width:34rem;margin:0 auto;padding:1.1rem 1rem 3.5rem}
+#app.largo{max-width:76rem}
+.guia{font-size:1.15rem}
+.miudo{font-size:.85rem;color:var(--tinta-suave)}
+.centro{text-align:center}
+.erro{color:var(--vermelho);font-weight:700}
+.erro:empty:not(.pin-msg){display:none}
+.aviso{background:var(--amarelo-claro);border-left:.35rem solid var(--amarelo);padding:.6rem .8rem;border-radius:.3rem}
+.vazio{padding:1rem;background:var(--papel);border-radius:.6rem}
+
+.bt{display:block;width:100%;min-height:3.4rem;margin:.7rem 0;padding:.8rem 1rem;border:2px solid var(--azul);border-radius:.6rem;background:var(--azul);color:#fff;font-weight:700;font-size:1.15rem;line-height:1.2;text-align:center;cursor:pointer;position:relative;overflow:hidden}
+.bt.sec{background:var(--papel);color:var(--azul)}
+.bt.fino{min-height:2.8rem;font-size:1rem;padding:.5rem .8rem}
+.bt:disabled{background:#9fb3c8;border-color:#9fb3c8;color:#fff;cursor:default}
+.bt.espera::before{content:"";position:absolute;left:0;top:0;bottom:0;width:0;background:rgba(18,63,107,.45);animation:enche var(--t,6s) linear forwards}
+.bt.espera span{position:relative}
+@keyframes enche{to{width:100%}}
+.link{background:none;border:0;padding:.5rem .2rem;color:var(--azul);text-decoration:underline;cursor:pointer;font-size:1rem}
+.links{display:flex;flex-wrap:wrap;gap:.3rem 1.2rem}
+.dupla{display:flex;gap:.6rem}
+.dupla>*{flex:1}
+.apoio{display:flex;flex-wrap:wrap;gap:.6rem;margin:.2rem 0}
+.apoio .bt{width:auto;min-height:2.6rem;margin:0;padding:.4rem 1rem;font-size:1rem}
+
+.campo{display:block;width:100%;min-height:3rem;margin:.4rem 0 .8rem;padding:.6rem .8rem;border:2px solid var(--linha);border-radius:.55rem;background:var(--papel);font-size:1.05rem}
+.campo.curto{width:auto;min-width:12rem;margin:0}
+.campo.mini{width:5.2rem;min-height:2.2rem;margin:0;padding:.25rem .45rem;font-size:.95rem}
+label{display:block;font-weight:700;margin-top:.6rem}
+
+.nomes{background:var(--papel);border:1px solid var(--linha);border-radius:.7rem;overflow:hidden}
+.nomes button{display:block;width:100%;text-align:left;padding:.85rem 1rem;background:var(--papel);border:0;border-top:1px solid var(--linha);font-size:1.1rem;cursor:pointer}
+.nomes button:active{background:var(--azul-claro)}
+.nomes .letra{padding:.35rem 1rem;background:var(--azul-claro);color:var(--azul-escuro);font-weight:700;font-size:.95rem;border-top:1px solid var(--linha)}
+.nomes>:first-child{border-top:0}
+
+.slots{display:flex;gap:.6rem;justify-content:center;margin:1.1rem 0 .4rem}
+.slot{width:3.1rem;height:3.7rem;border:2px solid var(--linha);border-radius:.55rem;background:var(--papel);display:grid;place-items:center}
+.slot.cheio{border-color:var(--azul)}
+.slot.cheio::after{content:"";width:1rem;height:1rem;border-radius:50%;background:var(--tinta)}
+.pin-msg{min-height:3.2rem;margin:.3rem 0}
+.teclado{display:grid;grid-template-columns:repeat(3,1fr);gap:.55rem;max-width:19rem;margin:.6rem auto 1rem}
+.tecla{min-height:3.9rem;border:2px solid var(--linha);border-radius:.7rem;background:var(--papel);font-size:1.7rem;font-weight:700;cursor:pointer}
+.tecla:active{background:var(--azul-claro)}
+.tecla.apaga{font-size:1rem}
+
+.curso{background:var(--papel);border:1px solid var(--linha);border-left:.45rem solid var(--azul);border-radius:.5rem .8rem .8rem .5rem;padding:.9rem 1rem .5rem;margin:.9rem 0}
+.curso.ok{border-left-color:var(--verde)}
+.curso h2{margin:.5rem 0 .2rem;font-size:1.4rem}
+.prazo,.selo{display:inline-block;margin:0;padding:.15rem .55rem;border-radius:.35rem;font-weight:700;font-size:.9rem}
+.prazo{background:var(--amarelo-claro);color:var(--amarelo-tinta);border:1px solid var(--amarelo)}
+.selo{background:var(--verde-claro);color:var(--verde);border:1px solid var(--verde)}
+
+.cab{display:flex;justify-content:space-between;align-items:center;gap:.6rem;font-size:.95rem;color:var(--tinta-suave)}
+.cab>:last-child{flex:none;white-space:nowrap}
+.cab>:first-child{text-align:left}
+.passos{display:flex;gap:3px;margin:.5rem 0 0}
+.passos i{flex:1;height:.5rem;border-radius:2px;background:var(--linha)}
+.passos i.ok{background:var(--verde)}
+.passos i.aqui{background:var(--azul)}
+
+.ficha{position:relative;margin:2.9rem 0 1rem;padding:1.5rem 1.1rem 1.3rem;min-height:11.5rem;background:var(--papel);border:1px solid var(--linha);border-top:.3rem solid var(--azul);border-radius:0 .8rem .8rem .8rem;box-shadow:0 3px 0 var(--linha)}
+.ficha .aba{position:absolute;left:-1px;bottom:100%;padding:.25rem .9rem .15rem;border-radius:.5rem .5rem 0 0;background:var(--azul);color:#fff;font-weight:700;font-size:.95rem}
+.ficha .txt{margin:0;font-size:1.45rem;line-height:1.3;font-weight:700}
+.ficha.resposta{border-top-color:var(--verde)}
+.ficha.resposta .aba{background:var(--verde)}
+.ficha.resposta .perg{margin:0 0 .8rem;padding-bottom:.7rem;border-bottom:1px dashed var(--linha);font-size:1rem;color:var(--tinta-suave)}
+.ficha.resposta .txt{font-weight:400;font-size:1.3rem;line-height:1.4}
+.ficha.vira{transform-origin:top center;animation:vira .2s ease-out}
+@keyframes vira{from{transform:perspective(60rem) rotateX(-28deg);opacity:.35}to{transform:none;opacity:1}}
+
+.enunciado{font-size:1.4rem;margin-top:1rem}
+.opcao{display:flex;gap:.7rem;align-items:flex-start;width:100%;margin:.55rem 0;padding:.8rem .9rem;text-align:left;background:var(--papel);border:2px solid var(--linha);border-radius:.7rem;font-size:1.1rem;cursor:pointer}
+.opcao .l{flex:none;width:1.9rem;height:1.9rem;border-radius:50%;border:2px solid var(--azul);display:grid;place-items:center;font-weight:700;color:var(--azul);font-size:1rem}
+.opcao.marcada{border-color:var(--azul);background:var(--azul-claro)}
+.opcao.marcada .l{background:var(--azul);color:#fff}
+
+.carimbo{display:inline-block;margin:1.2rem 0 .6rem;padding:.3rem 1.1rem;transform:rotate(-7deg);border:.24rem double var(--verde);border-radius:.4rem;color:var(--verde);font-weight:700;font-size:1.7rem;letter-spacing:.14em;text-transform:uppercase}
+.carimbo.pequeno{font-size:1.1rem;margin:.6rem 0}
+.rev{background:var(--papel);border:1px solid var(--linha);border-radius:.6rem;padding:.7rem .9rem;margin:.6rem 0}
+.rev-q{font-weight:700}
+.rev-sua{color:var(--vermelho)}
+.rev-certa{color:var(--verde);font-weight:700}
+
+.comp,.rel{background:var(--papel);border:1px solid var(--linha);border-radius:.4rem;padding:1.4rem 1.2rem}
+.comp-org{margin:0;font-weight:700;font-size:1.1rem;color:var(--azul-escuro)}
+.comp-org span{font-weight:400;font-size:.85rem;color:var(--tinta-suave)}
+.comp h1{margin-top:1rem}
+.comp-txt{font-size:1.1rem}
+dl{margin:.8rem 0}
+dt{font-size:.85rem;color:var(--tinta-suave);margin-top:.6rem}
+dd{margin:0;font-weight:700}
+
+/* administração */
+.abas{display:flex;flex-wrap:wrap;gap:.3rem;border-bottom:2px solid var(--azul);margin:.4rem 0 1rem}
+.abas button{border:0;background:transparent;padding:.55rem .9rem;border-radius:.5rem .5rem 0 0;cursor:pointer;font-size:1rem}
+.abas button.ativa{background:var(--azul);color:#fff;font-weight:700}
+.linha-topo{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.6rem}
+.indicador{background:var(--papel);border-left:.4rem solid var(--verde);padding:.6rem .9rem;border-radius:.3rem}
+.bloco{background:var(--papel);border:1px solid var(--linha);border-radius:.7rem;padding:.4rem 1rem 1rem;margin:1rem 0}
+.barra{height:.8rem;background:var(--linha);border-radius:.4rem;overflow:hidden}
+.barra i{display:block;height:100%;background:var(--verde)}
+.filtros{display:flex;flex-wrap:wrap;gap:.4rem;margin:.6rem 0}
+.chip{white-space:nowrap;border:1.5px solid var(--azul);background:var(--papel);color:var(--azul);border-radius:2rem;padding:.3rem .8rem;font-size:.9rem;cursor:pointer}
+.chip.ativa{background:var(--azul);color:#fff}
+.rolagem{overflow-x:auto}
+.tab{width:100%;border-collapse:collapse;background:var(--papel)}
+.tab th,.tab td{padding:.45rem .6rem;border-bottom:1px solid var(--linha);text-align:left;font-size:.88rem;vertical-align:top}
+.tab th{font-size:.8rem;color:var(--tinta-suave);white-space:nowrap}
+.tab tr.clicavel{cursor:pointer}
+.tab tr.clicavel:hover{background:var(--azul-claro)}
+.tab tr.inativo td{color:var(--tinta-suave)}
+.tag{display:inline-block;padding:.05rem .55rem;border-radius:1rem;font-size:.8rem;font-weight:700;white-space:nowrap}
+.tag.feito{background:var(--verde-claro);color:var(--verde)}
+.tag.pendente{background:var(--vermelho-claro);color:var(--vermelho)}
+.tag.andamento{background:var(--amarelo-claro);color:var(--amarelo-tinta)}
+.tag.afastado,.tag.desligado{background:#e6ebf0;color:var(--tinta-suave)}
+.alerta{color:var(--vermelho);font-size:.8rem}
+.aniv{display:flex;align-items:center;gap:.4rem;white-space:nowrap}
+dialog{width:100%;max-width:min(48rem,94vw);max-height:90vh;overflow:auto;border:0;border-radius:.8rem;padding:1.2rem;color:var(--tinta)}
+dialog::backdrop{background:rgba(16,38,59,.55)}
+.rel h1{font-size:1.4rem}
+.rel h2{font-size:1.1rem;border-bottom:1px solid var(--linha);padding-bottom:.2rem}
+.rel .formula{background:var(--fundo);padding:.6rem .8rem;border-radius:.3rem}
+.assin{display:flex;flex-wrap:wrap;gap:2rem;margin-top:3.5rem}
+.assin div{flex:1;min-width:14rem;border-top:1px solid var(--tinta);padding-top:.3rem;text-align:center;font-size:.9rem}
+
+@media (prefers-reduced-motion:reduce){.ficha.vira{animation:none}}
+@media print{
+  @page{size:A4;margin:16mm 14mm}
+  html,html.grande{font-size:11pt}
+  body{background:#fff}
+  .topo,.nao-imprime{display:none!important}
+  #app,#app.largo{max-width:none;padding:0}
+  .comp,.rel,.bloco{border:0;padding:0}
+  .tab th,.tab td{font-size:8.5pt;padding:2.5pt 4pt}
+  .rel section{break-inside:auto}
+  .rel tr{break-inside:avoid}
+  .assin{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<header class="topo">
+  <div class="marca">Hospital São Roque<span>Capacitações</span></div>
+  <div class="acoes" id="topo-acoes"></div>
+</header>
+<main id="app"><p class="guia">Carregando...</p></main>
+<noscript><p style="padding:1rem">Este aplicativo precisa do JavaScript ligado no navegador.</p></noscript>
+<script>
+(() => {
+'use strict';
+
+const CFG = Object.assign({
+  url: 'https://cdofbzcykbyyaylvtlks.supabase.co',
+  key: 'sb_publishable_U0m9Jvii9BSvE3-yta2D9A_uU2Y98C7',
+  espera: null            // segundos mínimos em cada cartão novo; null = conforme o tamanho do texto
+}, window.CAP_CFG || {});
+
+const app = document.getElementById('app');
+const topoAcoes = document.getElementById('topo-acoes');
+const S = { token: null, nome: null, adm: null, admNome: null, admMes: null, admAba: null,
+            pessoas: null, curso: null, quiz: null, resp: null, onKey: null, voltar: null, timers: [] };
+
+// ------------------------------------------------------------------ utilidades
+const mem = {
+  get(k) { try { return JSON.parse(sessionStorage.getItem(k)); } catch (e) { return null; } },
+  set(k, v) { try { v == null ? sessionStorage.removeItem(k) : sessionStorage.setItem(k, JSON.stringify(v)); } catch (e) {} },
+  lget(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+  lset(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+};
+function aparelho() {
+  let d = mem.lget('cap_aparelho');
+  if (!d) {
+    d = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : 'a' + Date.now() + String(Math.random()).slice(2);
+    mem.lset('cap_aparelho', d);
+  }
+  return d;
+}
+function h(tag, props, ...kids) {
+  const e = document.createElement(tag);
+  if (props) for (const k in props) {
+    const v = props[k];
+    if (v == null || v === false) continue;
+    if (k === 'class') e.className = v;
+    else if (k.slice(0, 2) === 'on') e.addEventListener(k.slice(2), v);
+    else e.setAttribute(k, v === true ? '' : v);
+  }
+  for (const c of kids.flat(Infinity)) {
+    if (c == null || c === false || c === '') continue;
+    e.append(c.nodeType ? c : document.createTextNode(String(c)));
+  }
+  return e;
+}
+const poe = (el, ...nos) => el.replaceChildren(...nos.flat(Infinity).filter(Boolean));
+const MESES = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
+const partes = d => String(d).slice(0, 10).split('-');
+const dia = d => { if (!d) return ''; const [a, m, x] = partes(d); return `${x}/${m}/${a}`; };
+const diaExt = d => { const [, m, x] = partes(d); return `${Number(x)} de ${MESES[m - 1]}`; };
+const mesExt = d => { const [a, m] = partes(d); return `${MESES[m - 1]} de ${a}`; };
+const dataHora = iso => iso ? new Date(iso).toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }).replace(',', ' às') : '';
+const dur = s => { s = Number(s) || 0; return s < 60 ? s + ' s' : Math.round(s / 60) + ' min'; };
+const pct = (a, b) => (b ? a * 100 / b : 0).toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + '%';
+const primeiro = n => String(n || '').trim().split(/\s+/)[0];
+const semAcento = s => String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+const TRILHA = { assistencial: 'Assistencial', multidisciplinar: 'Multidisciplinar', administrativo: 'Administrativo e Faturamento' };
+const SIT = { feito: 'Feito', pendente: 'Não começou', andamento: 'Em andamento', afastado: 'Afastado', desligado: 'Desligado' };
+const ST = { rascunho: 'rascunho', publicado: 'publicado', encerrado: 'encerrado' };
+const LETRAS = 'ABCDE';
+const porNome = (a, b) => a.nome.localeCompare(b.nome, 'pt-BR');
+
+class Erro extends Error { constructor(cod) { super(cod); this.cod = cod; } }
+async function rpc(fn, args) {
+  const ctl = new AbortController();
+  const t = setTimeout(() => ctl.abort(), 25000);
+  let r;
+  try {
+    r = await fetch(CFG.url + '/rest/v1/rpc/' + fn, {
+      method: 'POST', cache: 'no-store', signal: ctl.signal,
+      headers: { apikey: CFG.key, 'Content-Type': 'application/json' },
+      body: JSON.stringify(args || {})
+    });
+  } catch (e) { throw new Erro('REDE'); }
+  finally { clearTimeout(t); }
+  let j = null;
+  try { j = await r.json(); } catch (e) {}
+  if (!r.ok) throw new Erro((j && j.message) || 'ERRO');
+  return j;
+}
+const frpc = (fn, a) => rpc(fn, Object.assign({ p_token: S.token }, a));
+const arpc = (fn, a) => rpc(fn, Object.assign({ p_token: S.adm }, a));
+function textoErro(e) {
+  const c = e && e.cod;
+  if (c === 'REDE') return 'Sem internet agora. Confira o sinal e tente de novo.';
+  if (c === 'CURSO') return 'Esta capacitação não está mais disponível.';
+  if (c === 'ANIVERSARIO') return 'Data inválida. Use dia e mês, por exemplo 06/01.';
+  if (c === 'DADOS') return 'Confira os dados preenchidos.';
+  if (c === 'INCOMPLETO') return 'O curso ainda não tem cartões e questões suficientes para ser publicado.';
+  return 'Não deu certo agora. Tente de novo em instantes.';
+}
+async function ocupa(btn, fn) {
+  if (btn.disabled) return;
+  const txt = btn.textContent;
+  btn.disabled = true; btn.textContent = 'Aguarde...';
+  try { return await fn(); }
+  finally { if (btn.isConnected) { btn.disabled = false; btn.textContent = txt; } }
+}
+
+let falando = false;
+function parar() { try { if ('speechSynthesis' in window) speechSynthesis.cancel(); } catch (e) {} falando = false; }
+function ouvir(texto, btn) {
+  if (falando) { parar(); btn.textContent = 'Ouvir'; return; }
+  try {
+    const u = new SpeechSynthesisUtterance(texto);
+    u.lang = 'pt-BR'; u.rate = 0.92;
+    u.onend = u.onerror = () => { falando = false; if (btn.isConnected) btn.textContent = 'Ouvir'; };
+    falando = true; btn.textContent = 'Parar de ouvir';
+    speechSynthesis.speak(u);
+  } catch (e) { falando = false; }
+}
+const btOuvir = pega => ('speechSynthesis' in window)
+  ? h('button', { type: 'button', class: 'bt sec fino', onclick: e => ouvir(pega(), e.currentTarget) }, 'Ouvir') : null;
+
+function alternaLetra() {
+  const g = document.documentElement.classList.toggle('grande');
+  mem.lset('cap_letra', g ? 'g' : 'n');
+  topo();
+}
+function topo() {
+  topoAcoes.replaceChildren(...[
+    h('button', { type: 'button', onclick: alternaLetra }, document.documentElement.classList.contains('grande') ? 'Letra menor' : 'Letra maior'),
+    (S.token || S.adm) ? h('button', { type: 'button', onclick: () => sair() }, 'Sair') : null
+  ].filter(Boolean));
+}
+function mostra(opts, ...nos) {
+  S.timers.forEach(clearTimeout); S.timers = [];
+  parar();
+  S.onKey = opts.onKey || null;
+  S.voltar = opts.voltar || null;
+  app.className = opts.largo ? 'largo' : '';
+  topo();
+  app.replaceChildren(...nos.flat(Infinity).filter(Boolean));
+  window.scrollTo(0, 0);
+  const f = app.querySelector('[data-foco]');
+  if (f) try { f.focus({ preventScroll: true }); } catch (e) {}
+}
+function vFalha(e, deNovo) {
+  mostra({},
+    h('h1', null, 'Não deu para carregar'),
+    h('p', { class: 'guia' }, textoErro(e)),
+    h('button', { type: 'button', class: 'bt', 'data-foco': true, onclick: deNovo }, 'Tentar de novo'),
+    (S.token || S.adm) ? h('button', { type: 'button', class: 'bt sec', onclick: () => sair() }, 'Sair') : null);
+}
+function erroFluxo(e, deNovo) {
+  if (e && e.cod === 'SESSAO') return sairLocal('Sua sessão terminou. Entre de novo.');
+  return vFalha(e, deNovo);
+}
+
+// ------------------------------------------------------------------ sessão
+let ocioso = null;
+function mexeu() {
+  clearTimeout(ocioso);
+  if (S.token || S.adm) ocioso = setTimeout(() => sair('Você ficou um tempo sem mexer. Entre de novo.'), 20 * 60 * 1000);
+}
+function sairLocal(aviso) {
+  S.token = S.adm = S.nome = S.admNome = null;
+  S.curso = S.quiz = S.resp = null;
+  S.pessoas = null;            // recarrega a lista de nomes: pode ter mudado
+  mem.set('cap_s', null); mem.set('cap_a', null);
+  clearTimeout(ocioso);
+  vEntrar(aviso);
+}
+async function sair(aviso) {
+  const t = S.token, a = S.adm;
+  sairLocal(aviso);
+  try { if (t) await rpc('cap_sair', { p_token: t }); } catch (e) {}
+  try { if (a) await rpc('cap_sair', { p_token: a }); } catch (e) {}
+}
+
+// ------------------------------------------------------------------ entrada
+async function carregaNomes() {
+  if (S.pessoas) return;
+  const ps = await rpc('cap_nomes');
+  ps.sort(porNome);
+  S.pessoas = ps;
+}
+async function vEntrar(aviso) {
+  if (!S.pessoas) {
+    mostra({}, h('p', { class: 'guia' }, 'Carregando...'));
+    try { await carregaNomes(); } catch (e) { return vFalha(e, () => vEntrar(aviso)); }
+  }
+  const lista = h('div', { class: 'nomes' });
+  const busca = h('input', { type: 'search', class: 'campo', placeholder: 'Escreva aqui o seu nome', 'aria-label': 'Buscar pelo nome', autocomplete: 'off' });
+  function pinta() {
+    const q = semAcento(busca.value.trim());
+    const itens = S.pessoas.filter(p => !q || semAcento(p.nome).includes(q));
+    const nos = []; let letra = '';
+    for (const p of itens) {
+      const l = semAcento(p.nome).charAt(0).toUpperCase();
+      if (!q && l !== letra) { letra = l; nos.push(h('div', { class: 'letra', 'aria-hidden': 'true' }, l)); }
+      nos.push(h('button', { type: 'button', onclick: () => vPin(p) }, p.nome));
+    }
+    if (!itens.length) nos.push(h('p', { class: 'vazio' }, 'Nenhum nome encontrado. Confira como escreveu ou fale com a administração.'));
+    lista.replaceChildren(...nos);
+  }
+  busca.addEventListener('input', pinta);
+  pinta();
+  mostra({},
+    aviso ? h('p', { class: 'aviso', role: 'status' }, aviso) : null,
+    h('h1', null, 'Capacitações'),
+    h('p', { class: 'guia' }, 'Toque no seu nome para entrar.'),
+    busca, lista,
+    h('p', { class: 'miudo' }, 'Este sistema registra seu nome, os horários, as respostas e o aparelho usado, para comprovar a capacitação.'),
+    h('p', { class: 'links' },
+      h('button', { type: 'button', class: 'link', onclick: () => vConferir() }, 'Conferir um comprovante'),
+      h('button', { type: 'button', class: 'link', onclick: () => vAdmEntrar() }, 'Administração')));
+}
+
+function vPin(p) {
+  let pin = '', ocupado = false;
+  const slots = [0, 1, 2, 3].map(() => h('span', { class: 'slot' }));
+  const msg = h('p', { class: 'erro centro pin-msg', role: 'alert' });
+  const pinta = () => slots.forEach((s, i) => s.classList.toggle('cheio', i < pin.length));
+  async function enviar() {
+    ocupado = true;
+    msg.className = 'guia centro pin-msg'; msg.textContent = 'Conferindo...';
+    try {
+      const r = await rpc('cap_entrar', { p_pessoa: p.id, p_pin: pin, p_device: aparelho(), p_admin: false });
+      if (r.ok) {
+        S.token = r.token; S.nome = r.nome; S.adm = S.admNome = null;
+        mem.set('cap_s', { token: S.token, nome: S.nome }); mem.set('cap_a', null);
+        mexeu();
+        return vInicio();
+      }
+      msg.className = 'erro centro pin-msg';
+      msg.textContent = (r.motivo === 'bloqueado' || (r.motivo === 'pin' && r.restam <= 0)) ? 'Muitas tentativas erradas. Espere 10 minutos e tente de novo.'
+        : r.motivo === 'sem_pin' ? 'Seu acesso ainda não foi liberado. Fale com a administração.'
+        : r.motivo === 'pessoa' ? 'Este nome saiu da lista. Fale com a administração.'
+        : r.restam <= 2 ? `Os números não conferem. Você ainda pode tentar ${r.restam} ${r.restam === 1 ? 'vez' : 'vezes'}.`
+        : 'Os números não conferem. Tente de novo.';
+    } catch (e) { msg.className = 'erro centro pin-msg'; msg.textContent = textoErro(e); }
+    pin = ''; pinta(); ocupado = false;
+  }
+  function tecla(d) {
+    if (ocupado) return;
+    if (d === 'x') { pin = pin.slice(0, -1); pinta(); return; }
+    if (pin.length >= 4) return;
+    pin += d; pinta();
+    if (pin.length === 4) enviar();
+  }
+  const teclas = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '', '0', 'x'].map(d => d === '' ? h('span')
+    : h('button', { type: 'button', class: 'tecla' + (d === 'x' ? ' apaga' : ''), 'aria-label': d === 'x' ? 'Apagar' : d, onclick: () => tecla(d) }, d === 'x' ? 'Apagar' : d));
+  mostra({ voltar: () => vEntrar(), onKey: e => { if (/^\d$/.test(e.key)) tecla(e.key); else if (e.key === 'Backspace') tecla('x'); } },
+    h('h1', null, 'Olá, ' + primeiro(p.nome) + '!'),
+    h('p', { class: 'guia' }, 'Digite o dia e o mês do seu aniversário. São 4 números.'),
+    h('p', { class: 'miudo' }, 'Exemplo: quem nasceu em 6 de janeiro digita 0601.'),
+    h('div', { class: 'slots', role: 'img', 'aria-label': 'Números já digitados' }, slots),
+    msg,
+    h('div', { class: 'teclado' }, teclas),
+    h('button', { type: 'button', class: 'bt sec', onclick: () => vEntrar() }, 'Não sou ' + primeiro(p.nome)));
+}
+
+// ------------------------------------------------------------------ início do funcionário
+function cartaoCurso(c) {
+  const feito = c.estado === 'feito';
+  return h('section', { class: 'curso' + (feito ? ' ok' : '') },
+    h('p', { class: feito ? 'selo' : 'prazo' }, feito ? 'Feito em ' + dataHora(c.feito_em) : 'Prazo: até ' + diaExt(c.fecha_em)),
+    h('h2', null, c.titulo),
+    c.teste ? h('p', { class: 'miudo' }, 'Demonstração. Só a administração vê este curso.') : null,
+    feito ? null : h('p', null, `${c.n_cartoes} cartões e ${c.n_questoes} perguntas. Leva uns ${c.carga} minutos.`),
+    feito
+      ? h('button', { type: 'button', class: 'bt sec', onclick: e => ocupa(e.currentTarget, () => vComprovante(c.id)) }, 'Ver comprovante')
+      : h('button', { type: 'button', class: 'bt', onclick: e => ocupa(e.currentTarget, () => vCurso(c.id)) },
+          c.estado === 'novo' ? 'Começar' : c.estado === 'quiz' ? 'Fazer as perguntas' : `Continuar do cartão ${c.cartao_atual + 1}`));
+}
+async function vInicio() {
+  if (!app.querySelector('.curso')) mostra({}, h('p', { class: 'guia' }, 'Carregando...'));
+  let d;
+  try { d = await frpc('cap_inicio'); } catch (e) { return erroFluxo(e, () => vInicio()); }
+  S.nome = d.nome; S.curso = S.quiz = S.resp = null;
+  const abertos = d.cursos.filter(c => c.estado !== 'feito');
+  const feitos = d.cursos.filter(c => c.estado === 'feito');
+  const antigos = d.historico.filter(x => !d.cursos.some(c => c.id === x.curso));
+  mostra({},
+    h('h1', null, 'Olá, ' + primeiro(d.nome) + '!'),
+    abertos.length
+      ? [h('p', { class: 'guia' }, abertos.length === 1 ? 'Você tem 1 capacitação para fazer.' : `Você tem ${abertos.length} capacitações para fazer.`), abertos.map(cartaoCurso)]
+      : h('p', { class: 'guia' }, feitos.length ? 'Tudo feito por agora. Obrigado!' : 'Nenhuma capacitação aberta agora. Volte no começo do próximo mês.'),
+    feitos.map(cartaoCurso),
+    antigos.length ? [h('h2', null, 'O que eu já fiz'), antigos.map(x => h('section', { class: 'curso ok' },
+      h('p', { class: 'selo' }, 'Feito em ' + dataHora(x.feito_em)),
+      h('h2', null, x.titulo),
+      h('button', { type: 'button', class: 'bt sec fino', onclick: e => ocupa(e.currentTarget, () => vComprovante(x.curso)) }, 'Ver comprovante')))] : null,
+    h('button', { type: 'button', class: 'bt sec', onclick: () => sair() }, 'Sair'));
+}
+
+// ------------------------------------------------------------------ cartões
+async function vCurso(id) {
+  let d;
+  try { d = await frpc('cap_abrir', { p_curso: id }); } catch (e) { return erroFluxo(e, () => vInicio()); }
+  S.curso = d;
+  if (d.etapa === 'feito') return vInicio();
+  if (d.etapa === 'quiz') return vAntesQuiz();
+  return vCartao(Math.min(d.cartao_atual, d.cartoes.length - 1), false);
+}
+function vCartao(i, virado) {
+  const d = S.curso, n = d.cartoes.length, c = d.cartoes[i];
+  const visto = i < d.cartao_atual, ultimo = i === n - 1;
+  const cab = h('div', { class: 'cab' },
+    h('button', { type: 'button', class: 'link', onclick: () => vInicio() }, 'Sair e continuar depois'),
+    h('span', null, `Cartão ${i + 1} de ${n}`));
+  const passos = h('div', { class: 'passos', role: 'img', 'aria-label': `Cartão ${i + 1} de ${n}` },
+    d.cartoes.map((_, k) => h('i', { class: k === i ? 'aqui' : k < d.cartao_atual ? 'ok' : '' })));
+  const anterior = i > 0 ? h('button', { type: 'button', class: 'bt sec fino', onclick: () => vCartao(i - 1, true) }, 'Cartão anterior') : null;
+  const voltar = () => virado ? vCartao(i, false) : i > 0 ? vCartao(i - 1, true) : vInicio();
+
+  if (!virado) {
+    return mostra({ voltar },
+      cab, passos,
+      h('article', { class: 'ficha vira' }, h('span', { class: 'aba' }, 'Pergunta'), h('p', { class: 'txt' }, c.frente)),
+      h('button', { type: 'button', class: 'bt', 'data-foco': true, onclick: () => vCartao(i, true) }, 'Ver a resposta'),
+      h('div', { class: 'apoio' }, btOuvir(() => c.frente), anterior));
+  }
+
+  const msg = h('p', { class: 'erro', role: 'alert' });
+  const rotulo = ultimo ? 'Ir para as perguntas' : 'Próximo cartão';
+  const prox = h('button', { type: 'button', class: 'bt' }, rotulo);
+  prox.addEventListener('click', () => ocupa(prox, async () => {
+    msg.textContent = '';
+    try {
+      if (!visto) {
+        const r = await frpc('cap_cartao', { p_curso: d.curso.id, p_ordem: i + 1 });
+        d.cartao_atual = r.cartao_atual;
+      }
+      return ultimo ? vAntesQuiz() : vCartao(i + 1, false);
+    } catch (e) {
+      if (e.cod === 'SESSAO') return sairLocal('Sua sessão terminou. Entre de novo.');
+      if (e.cod === 'CURSO') return vFalha(e, () => vInicio());
+      msg.textContent = textoErro(e);
+    }
+  }));
+  mostra({ voltar },
+    cab, passos,
+    h('article', { class: 'ficha resposta vira' }, h('span', { class: 'aba' }, 'Resposta'),
+      h('p', { class: 'perg' }, c.frente), h('p', { class: 'txt' }, c.verso)),
+    msg, prox,
+    h('div', { class: 'apoio' }, btOuvir(() => c.verso), anterior));
+
+  if (!visto) {
+    const palavras = (c.frente + ' ' + c.verso).trim().split(/\s+/).length;
+    const seg = CFG.espera != null ? CFG.espera : Math.max(4, Math.min(12, Math.round(palavras / 3.2)));
+    if (seg > 0) {
+      prox.disabled = true;
+      prox.classList.add('espera');
+      prox.style.setProperty('--t', seg + 's');
+      prox.replaceChildren(h('span', null, 'Leia com calma'));
+      S.timers.push(setTimeout(() => {
+        prox.disabled = false; prox.classList.remove('espera'); prox.textContent = rotulo;
+        try { prox.focus({ preventScroll: true }); } catch (e) {}
+      }, seg * 1000));
+    }
+  }
+}
+
+// ------------------------------------------------------------------ perguntas
+function vAntesQuiz() {
+  const d = S.curso;
+  mostra({ voltar: () => vCartao(d.cartoes.length - 1, true) },
+    h('h1', null, 'Agora, as perguntas'),
+    h('p', { class: 'guia' }, `São ${d.curso.n_questoes} perguntas sobre o que você acabou de ler. Para concluir, acerte pelo menos ${d.curso.minimo}.`),
+    h('p', null, 'Se não conseguir, você pode rever os cartões e tentar de novo.'),
+    h('button', { type: 'button', class: 'bt', 'data-foco': true, onclick: e => ocupa(e.currentTarget, vQuiz) }, 'Começar as perguntas'),
+    h('button', { type: 'button', class: 'bt sec', onclick: () => vCartao(0, false) }, 'Rever os cartões'),
+    h('button', { type: 'button', class: 'link', onclick: () => vInicio() }, 'Sair e continuar depois'));
+}
+async function vQuiz() {
+  let q;
+  try { q = await frpc('cap_quiz', { p_curso: S.curso.curso.id }); }
+  catch (e) { if (e.cod === 'FEITO') return vInicio(); return erroFluxo(e, () => vAntesQuiz()); }
+  S.quiz = q; S.resp = q.questoes.map(() => null);
+  vPergunta(0);
+}
+function vPergunta(i) {
+  const q = S.quiz, n = q.questoes.length, x = q.questoes[i], ultimo = i === n - 1;
+  const msg = h('p', { class: 'erro', role: 'alert' });
+  const prox = h('button', { type: 'button', class: 'bt', disabled: S.resp[i] == null }, ultimo ? 'Enviar respostas' : 'Próxima pergunta');
+  const ops = x.alternativas.map((t, k) => h('button', {
+    type: 'button', class: 'opcao' + (S.resp[i] === k ? ' marcada' : ''), 'aria-pressed': S.resp[i] === k ? 'true' : 'false',
+    onclick: () => {
+      S.resp[i] = k;
+      ops.forEach((o, z) => { o.classList.toggle('marcada', z === k); o.setAttribute('aria-pressed', z === k ? 'true' : 'false'); });
+      prox.disabled = false;
+    }
+  }, h('span', { class: 'l', 'aria-hidden': 'true' }, LETRAS[k]), h('span', null, t)));
+  prox.addEventListener('click', () => ocupa(prox, async () => {
+    if (!ultimo) return vPergunta(i + 1);
+    const falta = S.resp.findIndex(v => v == null);
+    if (falta >= 0) return vPergunta(falta);
+    msg.textContent = '';
+    try {
+      const r = await frpc('cap_responder', { p_tentativa: q.tentativa, p_respostas: S.resp });
+      return vResultado(r);
+    } catch (e) {
+      if (e.cod === 'SESSAO') return sairLocal('Sua sessão terminou. Entre de novo.');
+      if (e.cod === 'JAENVIADA') return vInicio();
+      msg.textContent = textoErro(e);
+    }
+  }));
+  mostra({ voltar: () => i > 0 ? vPergunta(i - 1) : vAntesQuiz() },
+    h('div', { class: 'cab' }, h('span', null, S.curso.curso.titulo), h('span', null, `Pergunta ${i + 1} de ${n}`)),
+    h('div', { class: 'passos', role: 'img', 'aria-label': `Pergunta ${i + 1} de ${n}` }, q.questoes.map((_, k) => h('i', { class: k === i ? 'aqui' : S.resp[k] != null ? 'ok' : '' }))),
+    h('h1', { class: 'enunciado' }, x.enunciado),
+    h('div', { class: 'apoio' }, btOuvir(() => x.enunciado + ' ' + x.alternativas.map((t, k) => 'Opção ' + LETRAS[k] + ': ' + t + '.').join(' '))),
+    h('div', null, ops),
+    ultimo ? h('p', { class: 'miudo' }, 'Ao enviar, você confirma que fez esta capacitação pessoalmente.') : null,
+    msg, prox,
+    i > 0 ? h('button', { type: 'button', class: 'bt sec fino', onclick: () => vPergunta(i - 1) }, 'Pergunta anterior') : null);
+}
+function vResultado(r) {
+  const erradas = r.revisao.filter(x => !x.ok);
+  const rev = erradas.length ? [
+    h('h2', null, r.aprovado ? 'Vale a pena rever' : 'Veja o que faltou'),
+    erradas.map(x => h('div', { class: 'rev' },
+      h('p', { class: 'rev-q' }, x.enunciado),
+      x.sua ? h('p', { class: 'rev-sua' }, 'Você marcou: ' + x.sua) : null,
+      h('p', { class: 'rev-certa' }, 'O certo é: ' + x.certa),
+      x.explicacao ? h('p', null, x.explicacao) : null))] : null;
+  if (r.aprovado) {
+    return mostra({},
+      h('div', { class: 'centro' }, h('div', { class: 'carimbo' }, 'Concluído')),
+      h('h1', null, 'Parabéns, ' + primeiro(S.nome) + '!'),
+      h('p', { class: 'guia' }, `Você acertou ${r.acertos} de ${r.total}. A capacitação está concluída.`),
+      h('button', { type: 'button', class: 'bt', 'data-foco': true, onclick: e => ocupa(e.currentTarget, () => vComprovante(r.curso)) }, 'Ver comprovante'),
+      h('button', { type: 'button', class: 'bt sec', onclick: () => vInicio() }, 'Voltar ao início'),
+      rev);
+  }
+  mostra({},
+    h('h1', null, 'Ainda não foi desta vez'),
+    h('p', { class: 'guia' }, `Você acertou ${r.acertos} de ${r.total}. Para concluir, precisa acertar ${r.minimo}.`),
+    rev,
+    h('button', { type: 'button', class: 'bt', onclick: e => ocupa(e.currentTarget, vQuiz) }, 'Tentar de novo'),
+    h('button', { type: 'button', class: 'bt sec', onclick: () => vCartao(0, false) }, 'Rever os cartões'),
+    h('button', { type: 'button', class: 'link', onclick: () => vInicio() }, 'Sair e continuar depois'));
+}
+
+// ------------------------------------------------------------------ comprovante
+const linha = (t, v) => v ? [h('dt', null, t), h('dd', null, v)] : null;
+function docComprovante(c) {
+  return h('article', { class: 'comp' },
+    h('p', { class: 'comp-org' }, 'Hospital São Roque', h('br'), h('span', null, 'Sociedade Hospitalar de Caiçara - CNPJ 90.899.444/0001-01')),
+    h('h1', null, 'Comprovante de capacitação'),
+    c.teste ? h('p', { class: 'aviso' }, 'Demonstração: este comprovante não vale como registro.') : null,
+    h('p', { class: 'comp-txt' }, 'Comprovamos que ', h('strong', null, c.nome), c.funcao ? ` (${c.funcao})` : '',
+      ' concluiu a capacitação ', h('strong', null, c.titulo), ', referente a ' + mesExt(c.competencia) + '.'),
+    h('dl', null,
+      linha('Concluída em', dataHora(c.concluido_em)),
+      linha('Carga horária', c.carga + ' minutos'),
+      linha('Tempo dedicado', dur(c.tempo_seg)),
+      linha('Aproveitamento', `${c.acertos} de ${c.total} (${Math.round(c.acertos * 100 / c.total)}%)` + (c.tentativas > 1 ? `, na ${c.tentativas}ª tentativa` : '')),
+      linha('Conteúdo', c.conteudo),
+      linha('Responsável técnico', c.resp_nome + (c.resp_formacao ? ', ' + c.resp_formacao : '')),
+      c.resp2_nome ? linha('Autoria do conteúdo', c.resp2_nome + (c.resp2_formacao ? ', ' + c.resp2_formacao : '')) : null,
+      linha('Código de verificação', c.codigo)),
+    h('div', { class: 'centro' }, h('div', { class: 'carimbo pequeno' }, 'Concluído')),
+    h('p', { class: 'miudo' }, 'Para conferir, abra ' + location.origin + location.pathname + ' e toque em "Conferir um comprovante".'));
+}
+async function vComprovante(curso, pronto, voltar) {
+  let c = pronto;
+  if (!c) { try { c = await frpc('cap_comprovante', { p_curso: curso }); } catch (e) { return erroFluxo(e, () => vInicio()); } }
+  const volta = voltar || (() => vInicio());
+  mostra({ voltar: volta, largo: false },
+    docComprovante(c),
+    h('button', { type: 'button', class: 'bt nao-imprime', onclick: () => window.print() }, 'Imprimir ou salvar em PDF'),
+    h('button', { type: 'button', class: 'bt sec nao-imprime', onclick: volta }, 'Voltar'));
+}
+function vConferir() {
+  const campo = h('input', { class: 'campo', placeholder: 'HSR-XXXX-XXXX', style: 'text-transform:uppercase', autocapitalize: 'characters', autocomplete: 'off', 'aria-label': 'Código de verificação', 'data-foco': true });
+  const saida = h('div', { role: 'status' });
+  const bt = h('button', { type: 'submit', class: 'bt' }, 'Conferir');
+  const form = h('form', { onsubmit: e => {
+    e.preventDefault();
+    ocupa(bt, async () => {
+      try {
+        const r = await rpc('cap_verificar', { p_codigo: campo.value });
+        saida.replaceChildren(r.ok
+          ? h('section', { class: 'curso ok' },
+              h('p', { class: 'selo' }, 'Comprovante verdadeiro'),
+              h('h2', null, r.titulo),
+              h('p', null, `${r.nome}${r.funcao ? ' (' + r.funcao + ')' : ''} concluiu em ${dataHora(r.concluido_em)}, com ${r.acertos} de ${r.total} acertos. Carga horária: ${r.carga} minutos.`),
+              r.teste ? h('p', { class: 'miudo' }, 'Curso de demonstração: não vale como registro.') : null)
+          : h('p', { class: 'erro' }, 'Código não encontrado. Confira as letras e os números.'));
+      } catch (e) { saida.replaceChildren(h('p', { class: 'erro' }, textoErro(e))); }
+    });
+  } }, h('label', null, 'Código de verificação', campo), bt);
+  mostra({ voltar: () => vEntrar() },
+    h('h1', null, 'Conferir um comprovante'),
+    h('p', { class: 'guia' }, 'Digite o código que aparece no comprovante.'),
+    form, saida,
+    h('button', { type: 'button', class: 'bt sec', onclick: () => vEntrar() }, 'Voltar'));
+}
+
+// ------------------------------------------------------------------ administração
+async function vAdmEntrar() {
+  if (!S.pessoas) {
+    mostra({}, h('p', { class: 'guia' }, 'Carregando...'));
+    try { await carregaNomes(); } catch (e) { return vFalha(e, () => vAdmEntrar()); }
+  }
+  const sel = h('select', { class: 'campo' }, S.pessoas.filter(p => p.adm).map(p => h('option', { value: p.id }, p.nome)));
+  const senha = h('input', { type: 'password', class: 'campo', autocomplete: 'current-password' });
+  const msg = h('p', { class: 'erro', role: 'alert' });
+  const bt = h('button', { type: 'submit', class: 'bt' }, 'Entrar');
+  const form = h('form', { onsubmit: e => {
+    e.preventDefault();
+    ocupa(bt, async () => {
+      msg.textContent = '';
+      try {
+        const r = await rpc('cap_entrar', { p_pessoa: Number(sel.value), p_pin: senha.value, p_device: aparelho(), p_admin: true });
+        if (r.ok) {
+          S.adm = r.token; S.admNome = r.nome; S.token = S.nome = null;
+          mem.set('cap_a', { token: S.adm, nome: S.admNome }); mem.set('cap_s', null);
+          mexeu();
+          return vAdm('adesao');
+        }
+        msg.textContent = r.motivo === 'bloqueado' ? 'Muitas tentativas erradas. Espere 10 minutos.' : 'Senha incorreta.';
+      } catch (e) { msg.textContent = textoErro(e); }
+    });
+  } }, h('label', null, 'Quem é você', sel), h('label', null, 'Senha da administração', senha), msg, bt);
+  mostra({ voltar: () => vEntrar() },
+    h('h1', null, 'Administração'),
+    form,
+    h('button', { type: 'button', class: 'bt sec', onclick: () => vEntrar() }, 'Voltar'));
+}
+
+const ABAS = [['adesao', 'Adesão'], ['pessoas', 'Pessoas'], ['cursos', 'Cursos'], ['relatorio', 'Relatório'], ['senha', 'Minha senha']];
+async function vAdm(aba, extra) {
+  S.admAba = aba;
+  const corpo = h('div', null, h('p', { class: 'guia' }, 'Carregando...'));
+  mostra({ largo: true },
+    h('p', { class: 'miudo nao-imprime' }, 'Administração. Você entrou como ' + S.admNome + '.'),
+    h('nav', { class: 'abas nao-imprime' }, ABAS.map(([k, t]) => h('button', { type: 'button', class: k === aba ? 'ativa' : '', onclick: () => vAdm(k) }, t))),
+    corpo);
+  try {
+    const nos = await ({ adesao: admAdesao, pessoas: admPessoas, cursos: admCursos, relatorio: admRelatorio, senha: admSenha })[aba](extra);
+    if (S.admAba === aba && corpo.isConnected) corpo.replaceChildren(...[nos].flat(Infinity).filter(Boolean));
+  } catch (e) {
+    if (e.cod === 'SESSAO') return sairLocal('A sessão da administração terminou. Entre de novo.');
+    corpo.replaceChildren(h('p', { class: 'erro' }, textoErro(e)), h('button', { type: 'button', class: 'bt sec', onclick: () => vAdm(aba) }, 'Tentar de novo'));
+  }
+}
+function erroAdm(e) {
+  if (e.cod === 'SESSAO') { sairLocal('A sessão da administração terminou. Entre de novo.'); return ''; }
+  return textoErro(e);
+}
+async function copiar(texto, btn) {
+  let ok = false;
+  try { await navigator.clipboard.writeText(texto); ok = true; } catch (e) {
+    try {
+      const ta = h('textarea', { style: 'position:fixed;opacity:0' }); ta.value = texto; document.body.append(ta); ta.select();
+      ok = document.execCommand('copy'); ta.remove();
+    } catch (e2) {}
+  }
+  const txt = btn.textContent;
+  btn.textContent = ok ? 'Lista copiada' : 'Não deu para copiar';
+  setTimeout(() => { if (btn.isConnected) btn.textContent = txt; }, 2000);
+}
+
+// --- adesão
+function blocoCurso(c) {
+  c.pessoas.sort(porNome);
+  let filtro = 'todos';
+  const corpo = h('tbody');
+  const pend = c.pessoas.filter(p => p.no_publico && p.situacao !== 'feito');
+  function pinta() {
+    const ps = c.pessoas.filter(p => filtro === 'todos' || (filtro === 'pendentes' ? (p.no_publico && p.situacao !== 'feito') : p.situacao === 'feito'));
+    corpo.replaceChildren(...(ps.length ? ps.map(p => h('tr', { class: 'clicavel', tabindex: '0',
+        onclick: () => admDetalhe(p, c), onkeydown: e => { if (e.key === 'Enter') admDetalhe(p, c); } },
+      h('td', null, p.nome), h('td', null, p.funcao), h('td', null, TRILHA[p.trilha]),
+      h('td', null, h('span', { class: 'tag ' + p.situacao }, SIT[p.situacao] + (p.situacao === 'andamento' ? `, cartão ${p.cartao_atual}` : ''))),
+      h('td', null, p.concluido_em ? dataHora(p.concluido_em) : ''),
+      h('td', null, p.acertos != null ? `${p.acertos} de ${p.total}` : ''),
+      h('td', null, p.tentativas ? String(p.tentativas) : ''),
+      h('td', null, p.tempo_seg ? dur(p.tempo_seg) : ''),
+      h('td', null, (p.alertas || []).map(a => h('div', { class: 'alerta' }, a)))))
+      : [h('tr', null, h('td', { colspan: '9' }, 'Ninguém nesta situação.'))]));
+  }
+  const chips = [['todos', `Todos (${c.pessoas.length})`], ['pendentes', `Pendentes (${pend.length})`], ['feitos', `Feitos (${c.feitos})`]].map(([k, t]) =>
+    h('button', { type: 'button', class: 'chip' + (k === filtro ? ' ativa' : ''), onclick: e => {
+      filtro = k; chips.forEach(b => b.classList.toggle('ativa', b === e.currentTarget)); pinta();
+    } }, t));
+  pinta();
+  const lista = `Capacitação "${c.titulo}" - prazo até ${dia(c.fecha_em)}\nAinda não concluíram (${pend.length}):\n` + pend.map(p => '- ' + p.nome).join('\n');
+  return h('section', { class: 'bloco' },
+    h('h2', null, c.titulo + (c.teste ? ' (demonstração)' : '')),
+    h('p', { class: 'miudo' }, `Para: ${c.trilhas.map(t => TRILHA[t]).join(', ')}. Prazo: ${dia(c.fecha_em)}. Situação do curso: ${ST[c.status]}.` + (c.teste ? ' Não entra no indicador nem no relatório.' : '')),
+    h('div', { class: 'barra', role: 'img', 'aria-label': `${c.feitos} de ${c.publico} concluíram` }, h('i', { style: `width:${c.publico ? c.feitos * 100 / c.publico : 0}%` })),
+    h('p', null, h('strong', null, `${c.feitos} de ${c.publico} concluíram (${pct(c.feitos, c.publico)})`)),
+    h('div', { class: 'filtros nao-imprime' }, chips,
+      pend.length ? h('button', { type: 'button', class: 'chip', onclick: e => copiar(lista, e.currentTarget) }, 'Copiar lista de pendentes') : null),
+    h('div', { class: 'rolagem' }, h('table', { class: 'tab' },
+      h('thead', null, h('tr', null, ['Nome', 'Função', 'Trilha', 'Situação', 'Concluiu em', 'Acertos', 'Tentativas', 'Tempo', 'Alertas'].map(t => h('th', null, t)))),
+      corpo)),
+    h('p', { class: 'miudo nao-imprime' }, 'Toque em uma pessoa para ver os horários, as tentativas e o aparelho usado.'));
+}
+async function admAdesao() {
+  const d = await arpc('cap_adm_painel', { p_mes: S.admMes });
+  S.admMes = d.mes;
+  const ind = d.indicador;
+  return [
+    h('div', { class: 'linha-topo' }, h('h1', null, 'Adesão'),
+      h('select', { class: 'campo curto', 'aria-label': 'Mês', onchange: e => { S.admMes = e.target.value; vAdm('adesao'); } },
+        d.meses.map(m => h('option', { value: m, selected: m === d.mes }, mesExt(m))))),
+    h('p', { class: 'indicador' }, ind.den
+      ? `Indicador do mês pela fórmula do contrato: ${ind.num} de ${ind.den} (${pct(ind.num, ind.den)}). A meta é 6% ou mais.`
+      : 'Nenhuma capacitação oficial publicada neste mês.'),
+    d.cursos.map(blocoCurso)
+  ];
+}
+async function admDetalhe(p, c) {
+  const dlg = h('dialog');
+  const fecha = () => { dlg.close(); dlg.remove(); };
+  dlg.append(h('p', { class: 'guia' }, 'Carregando...'));
+  document.body.append(dlg); dlg.showModal();
+  dlg.addEventListener('close', () => dlg.remove());
+  let d;
+  try { d = await arpc('cap_adm_detalhe', { p_pessoa: p.pessoa_id, p_curso: c.id }); }
+  catch (e) {
+    const m = erroAdm(e);
+    if (!m) { fecha(); return; }
+    dlg.replaceChildren(h('p', { class: 'erro' }, m), h('button', { type: 'button', class: 'bt sec fino', onclick: fecha }, 'Fechar'));
+    return;
+  }
+  const g = d.progresso, log = (g && g.cartoes_log) || [];
+  poe(dlg,
+    h('h2', { style: 'margin-top:0' }, d.pessoa.nome),
+    h('p', { class: 'miudo' }, `${d.pessoa.funcao}. Curso: ${c.titulo}.`),
+    g ? h('p', null, `Começou em ${dataHora(g.iniciado_em)}. Cartões vistos: ${g.cartao_atual}. Tempo nos cartões: ${dur(g.tempo_cartoes_seg)}.` + (g.concluido_em ? ` Concluiu em ${dataHora(g.concluido_em)}.` : '')) : h('p', null, 'Ainda não começou este curso.'),
+    (p.alertas || []).map(a => h('p', { class: 'alerta' }, a)),
+    d.tentativas.length ? [h('h2', null, 'Tentativas nas perguntas'), h('div', { class: 'rolagem' }, h('table', { class: 'tab' },
+      h('thead', null, h('tr', null, ['Nº', 'Início', 'Envio', 'Acertos', 'Resultado', 'Tempo', 'Endereço IP', 'Aparelho'].map(t => h('th', null, t)))),
+      h('tbody', null, d.tentativas.map(t => h('tr', null,
+        h('td', null, String(t.numero)), h('td', null, dataHora(t.iniciada_em)), h('td', null, t.finalizada_em ? dataHora(t.finalizada_em) : 'não enviou'),
+        h('td', null, t.acertos != null ? `${t.acertos} de ${t.total}` : ''),
+        h('td', null, t.aprovado == null ? '' : t.aprovado ? 'aprovado' : 'não atingiu'),
+        h('td', null, t.tempo_seg != null ? dur(t.tempo_seg) : ''),
+        h('td', null, t.ip || ''), h('td', null, (t.user_agent || '').slice(0, 70)))))))] : null,
+    log.length ? [h('h2', null, 'Tempo em cada cartão'), h('p', { class: 'miudo' }, log.map(x => `${x.o}: ${x.s} s`).join(' | '))] : null,
+    d.acessos.length ? [h('h2', null, 'Últimas entradas no sistema'), h('p', { class: 'miudo' }, d.acessos.map(a => dataHora(a.em) + (a.ok ? '' : ' (PIN errado)')).join(' | '))] : null,
+    h('div', { class: 'dupla' },
+      d.comprovante ? h('button', { type: 'button', class: 'bt fino', onclick: () => { fecha(); vComprovante(null, d.comprovante, () => vAdm('adesao')); } }, 'Abrir comprovante') : null,
+      h('button', { type: 'button', class: 'bt sec fino', onclick: fecha }, 'Fechar')));
+}
+
+// --- pessoas
+function formPessoa(p, aoSalvar) {
+  const dlg = h('dialog');
+  const fecha = () => { dlg.close(); dlg.remove(); };
+  const f = {
+    nome: h('input', { class: 'campo', value: p ? p.nome : '', required: true }),
+    funcao: h('input', { class: 'campo', value: p ? p.funcao : '' }),
+    vinculo: h('input', { class: 'campo', value: p ? p.vinculo : 'CLT' }),
+    setor: h('input', { class: 'campo', value: p ? p.setor : '' }),
+    trilha: h('select', { class: 'campo' }, Object.keys(TRILHA).map(k => h('option', { value: k, selected: p ? p.trilha === k : false }, TRILHA[k]))),
+    aniversario: h('input', { class: 'campo', placeholder: 'DD/MM', inputmode: 'numeric', maxlength: '5' }),
+    ativo: h('input', { type: 'checkbox', checked: p ? p.ativo : true })
+  };
+  const msg = h('p', { class: 'erro', role: 'alert' });
+  const bt = h('button', { type: 'submit', class: 'bt fino' }, 'Salvar');
+  dlg.append(h('form', { onsubmit: e => {
+    e.preventDefault();
+    ocupa(bt, async () => {
+      const dados = { nome: f.nome.value, funcao: f.funcao.value, vinculo: f.vinculo.value, setor: f.setor.value, trilha: f.trilha.value, ativo: f.ativo.checked };
+      if (p) dados.id = p.id;
+      if (f.aniversario.value.trim()) dados.aniversario = f.aniversario.value;
+      try { await arpc('cap_adm_salvar_pessoa', { p_dados: dados }); fecha(); aoSalvar(); }
+      catch (err) { msg.textContent = erroAdm(err); }
+    });
+  } },
+    h('h2', { style: 'margin-top:0' }, p ? 'Editar pessoa' : 'Nova pessoa'),
+    h('label', null, 'Nome completo', f.nome),
+    h('label', null, 'Função', f.funcao),
+    h('label', null, 'Vínculo', f.vinculo),
+    h('label', null, 'Setor', f.setor),
+    h('label', null, 'Trilha', f.trilha),
+    h('label', null, p ? 'Aniversário (deixe em branco para não mudar)' : 'Aniversário (dia e mês)', f.aniversario),
+    h('label', null, f.ativo, ' Ativa no hospital'),
+    msg,
+    h('div', { class: 'dupla' }, bt, h('button', { type: 'button', class: 'bt sec fino', onclick: fecha }, 'Cancelar'))));
+  document.body.append(dlg); dlg.showModal();
+  dlg.addEventListener('close', () => dlg.remove());
+}
+async function admPessoas() {
+  const d = await arpc('cap_adm_pessoas', { p_mes: S.admMes });
+  d.pessoas.sort(porNome);
+  const corpo = h('tbody');
+  const busca = h('input', { type: 'search', class: 'campo', placeholder: 'Buscar pessoa', 'aria-label': 'Buscar pessoa' });
+  function linhaPessoa(p) {
+    let gravando = false;
+    const aniv = h('input', { class: 'campo mini', inputmode: 'numeric', maxlength: '5', placeholder: 'DD/MM', 'aria-label': 'Aniversário de ' + p.nome });
+    const st = h('span', { class: 'tag ' + (p.tem_pin ? 'feito' : 'pendente') }, p.tem_pin ? 'cadastrado' : 'falta');
+    async function grava() {
+      const v = aniv.value.replace(/\D/g, '');
+      if (!v || gravando) return;
+      if (v.length !== 4) { st.className = 'tag pendente'; st.textContent = 'use DD/MM'; return; }
+      gravando = true; st.className = 'tag andamento'; st.textContent = 'gravando';
+      try {
+        await arpc('cap_adm_salvar_pessoa', { p_dados: { id: p.id, aniversario: v } });
+        p.tem_pin = true; aniv.value = ''; st.className = 'tag feito'; st.textContent = 'cadastrado';
+      } catch (e) {
+        const m = erroAdm(e);
+        st.className = 'tag pendente'; st.textContent = e.cod === 'ANIVERSARIO' ? 'data inválida' : (m ? 'erro, tente de novo' : '');
+      }
+      gravando = false;
+    }
+    aniv.addEventListener('input', () => { const v = aniv.value.replace(/\D/g, '').slice(0, 4); aniv.value = v.length > 2 ? v.slice(0, 2) + '/' + v.slice(2) : v; });
+    aniv.addEventListener('blur', grava);
+    aniv.addEventListener('keydown', e => {
+      if (e.key !== 'Enter') return;
+      e.preventDefault();
+      const prox = aniv.closest('tr').nextElementSibling;
+      grava().then(() => { const i = prox && prox.querySelector('input.mini'); if (i) i.focus(); });
+    });
+    const afast = h('input', { type: 'checkbox', checked: p.afastado, 'aria-label': 'Afastado em ' + mesExt(d.mes), onchange: async e => {
+      const cx = e.target;
+      try { await arpc('cap_adm_afastar', { p_pessoa: p.id, p_mes: d.mes, p_afastado: cx.checked, p_motivo: '' }); p.afastado = cx.checked; }
+      catch (err) { cx.checked = !cx.checked; erroAdm(err); }
+    } });
+    return h('tr', { class: p.ativo ? '' : 'inativo' },
+      h('td', null, p.nome, p.admin ? [' ', h('span', { class: 'tag andamento' }, 'administração')] : null),
+      h('td', null, p.funcao), h('td', null, TRILHA[p.trilha]),
+      h('td', null, h('div', { class: 'aniv' }, aniv, st)),
+      h('td', null, afast),
+      h('td', null, p.ativo ? 'Ativa' : 'Inativa'),
+      h('td', null, h('button', { type: 'button', class: 'chip', onclick: () => formPessoa(p, () => vAdm('pessoas')) }, 'Editar')));
+  }
+  function pinta() {
+    const q = semAcento(busca.value.trim());
+    corpo.replaceChildren(...d.pessoas.filter(p => !q || semAcento(p.nome + ' ' + p.funcao).includes(q)).map(linhaPessoa));
+  }
+  busca.addEventListener('input', pinta);
+  pinta();
+  const falta = d.pessoas.filter(p => p.ativo && !p.tem_pin).length;
+  return [
+    h('div', { class: 'linha-topo' }, h('h1', null, 'Pessoas'),
+      h('button', { type: 'button', class: 'chip', onclick: () => formPessoa(null, () => vAdm('pessoas')) }, 'Nova pessoa')),
+    h('p', { class: 'indicador' }, falta
+      ? `Faltam ${falta} aniversários. Sem o dia e o mês cadastrados a pessoa não consegue entrar. Digite DD/MM e aperte Enter para ir à próxima linha.`
+      : 'Todas as pessoas ativas já têm o aniversário cadastrado.'),
+    h('p', { class: 'miudo' }, `O aniversário não fica visível depois de gravado. "Afastado" vale para ${mesExt(d.mes)} e tira a pessoa do público-alvo do mês (férias, atestado, licença).`),
+    busca,
+    h('div', { class: 'rolagem' }, h('table', { class: 'tab' },
+      h('thead', null, h('tr', null, ['Nome', 'Função', 'Trilha', 'Aniversário (PIN)', 'Afastado no mês', 'Situação', ''].map(t => h('th', null, t)))),
+      corpo))
+  ];
+}
+
+// --- cursos
+async function admCurso(id) {
+  const dlg = h('dialog');
+  const fecha = () => { dlg.close(); dlg.remove(); };
+  dlg.append(h('p', { class: 'guia' }, 'Carregando...'));
+  document.body.append(dlg); dlg.showModal();
+  dlg.addEventListener('close', () => dlg.remove());
+  let c;
+  try { c = await arpc('cap_adm_curso', { p_id: id }); } catch (e) { fecha(); erroAdm(e); return; }
+  poe(dlg,
+    h('h2', { style: 'margin-top:0' }, c.titulo),
+    h('p', { class: 'miudo' }, `${mesExt(c.competencia)}. Para: ${c.trilhas.map(t => TRILHA[t]).join(', ')}. Carga horária: ${c.carga_horaria_min} minutos. Nota mínima: ${c.nota_minima}%. ${c.n_questoes} perguntas por tentativa, sorteadas de ${c.questoes.length}.`),
+    h('p', null, h('strong', null, 'Objetivo: '), c.objetivo),
+    h('p', null, h('strong', null, 'Conteúdo: '), c.conteudo),
+    h('p', null, h('strong', null, 'Texto-base: '), c.fonte),
+    h('p', null, h('strong', null, 'Responsável técnico: '), c.resp_nome + (c.resp2_nome ? '. Autoria do conteúdo: ' + c.resp2_nome : '')),
+    h('h2', null, `Cartões (${c.cartoes.length})`),
+    c.cartoes.map(k => h('div', { class: 'rev' }, h('p', { class: 'rev-q' }, `${k.ordem}. ${k.frente}`), h('p', null, k.verso))),
+    h('h2', null, `Banco de perguntas (${c.questoes.length})`),
+    c.questoes.map((q, i) => h('div', { class: 'rev' }, h('p', { class: 'rev-q' }, `${i + 1}. ${q.enunciado}`),
+      q.alternativas.map((a, k) => h('p', { class: k === q.correta ? 'rev-certa' : '' }, (k === q.correta ? 'Certa: ' : 'Errada: ') + a)),
+      q.explicacao ? h('p', { class: 'miudo' }, q.explicacao) : null)),
+    h('button', { type: 'button', class: 'bt sec fino', onclick: fecha }, 'Fechar'));
+}
+async function admCursos() {
+  const cs = await arpc('cap_adm_cursos');
+  const aviso = h('p', { class: 'erro', role: 'alert' });
+  async function muda(c, status, prazo, btn) {
+    await ocupa(btn, async () => {
+      try { await arpc('cap_adm_curso_status', { p_id: c.id, p_status: status, p_fecha_em: prazo }); return vAdm('cursos'); }
+      catch (e) { aviso.textContent = erroAdm(e); }
+    });
+  }
+  return [
+    h('h1', null, 'Cursos'),
+    h('p', { class: 'miudo' }, 'Os cursos de cada mês são montados a partir dos textos-base aprovados pelo responsável técnico. Aqui você confere o conteúdo, põe no ar, tira do ar e ajusta o prazo.'),
+    aviso,
+    cs.length ? h('div', { class: 'rolagem' }, h('table', { class: 'tab' },
+      h('thead', null, h('tr', null, ['Mês', 'Curso', 'Para', 'Cartões', 'Perguntas', 'Situação', 'Prazo', ''].map(t => h('th', null, t)))),
+      h('tbody', null, cs.map(c => {
+        const prazo = h('input', { type: 'date', class: 'campo mini', style: 'width:9.5rem', value: c.fecha_em, min: c.abre_em, 'aria-label': 'Prazo de ' + c.titulo });
+        return h('tr', null,
+          h('td', null, mesExt(c.competencia)),
+          h('td', null, c.titulo + (c.teste ? ' (demonstração)' : '')),
+          h('td', null, c.trilhas.map(t => TRILHA[t]).join(', ')),
+          h('td', null, String(c.n_cartoes)),
+          h('td', null, `${c.n_questoes} de ${c.n_banco}`),
+          h('td', null, h('span', { class: 'tag ' + (c.status === 'publicado' ? 'feito' : c.status === 'rascunho' ? 'andamento' : 'afastado') }, ST[c.status])),
+          h('td', null, h('div', { class: 'aniv' }, prazo, h('button', { type: 'button', class: 'chip', onclick: e => muda(c, null, prazo.value, e.currentTarget) }, 'Salvar prazo'))),
+          h('td', null, h('div', { class: 'filtros', style: 'margin:0' },
+            h('button', { type: 'button', class: 'chip', onclick: () => admCurso(c.id) }, 'Ver conteúdo'),
+            c.status === 'publicado'
+              ? h('button', { type: 'button', class: 'chip', onclick: e => muda(c, 'rascunho', null, e.currentTarget) }, 'Tirar do ar')
+              : h('button', { type: 'button', class: 'chip ativa', onclick: e => muda(c, 'publicado', null, e.currentTarget) }, 'Pôr no ar'))));
+      })))) : h('p', { class: 'vazio' }, 'Nenhum curso cadastrado ainda.')
+  ];
+}
+
+// --- relatório
+function docRelatorio(r, periodo) {
+  const ind = r.indicador;
+  const resp2 = [...new Set(r.cursos.filter(c => c.resp2_nome).map(c => c.resp2_nome + (c.resp2_formacao ? ', ' + c.resp2_formacao : '')))];
+  return h('article', { class: 'rel' },
+    h('p', { class: 'comp-org' }, 'Hospital São Roque', h('br'), h('span', null, 'Sociedade Hospitalar de Caiçara - CNPJ 90.899.444/0001-01 - Rua Dom Pedro I, nº 810, Caiçara/RS')),
+    h('h1', null, 'Relatório de Educação Permanente'),
+    h('p', null, h('strong', null, 'Período: '), `${periodo} (${dia(r.inicio)} a ${dia(r.fim)})`),
+    h('h2', null, 'Indicador do Documento Descritivo'),
+    h('p', null, 'Porcentual de profissionais do público-alvo treinados. Fonte: controle interno do hospital para treinamento (aplicativo Capacitações HSR).'),
+    h('div', { class: 'formula' },
+      h('p', null, 'Fórmula: (funcionários que receberam o treinamento) ÷ (número de treinamentos × funcionários que deveriam recebê-lo) × 100'),
+      h('p', null, h('strong', null, ind.den
+        ? `Resultado: ${ind.num} ÷ ${ind.den} × 100 = ${pct(ind.num, ind.den)}`
+        : 'Resultado: não houve treinamento publicado no período.')),
+      h('p', { class: 'miudo' }, `Treinamentos no período: ${ind.treinamentos}. O denominador soma o público-alvo de cada treinamento. Meta almejada: 6% ou mais. Meta aceitável: 5% ou mais.`)),
+    r.cursos.length ? [
+      h('h2', null, 'Resumo'),
+      h('table', { class: 'tab' },
+        h('thead', null, h('tr', null, ['Treinamento', 'Mês', 'Público-alvo', 'Concluíram', 'Adesão'].map(t => h('th', null, t)))),
+        h('tbody', null, r.cursos.map(c => h('tr', null, h('td', null, c.titulo), h('td', null, mesExt(c.competencia)),
+          h('td', null, String(c.publico)), h('td', null, String(c.feitos)), h('td', null, pct(c.feitos, c.publico))))))] : null,
+    r.cursos.map(c => h('section', null,
+      h('h2', null, `${c.titulo} (${mesExt(c.competencia)})`),
+      h('p', null, h('strong', null, 'Objetivo: '), c.objetivo),
+      h('p', null, h('strong', null, 'Conteúdo ministrado: '), c.conteudo),
+      h('p', null, h('strong', null, 'Texto-base: '), c.fonte),
+      h('p', null, h('strong', null, 'Modalidade e critério: '), `a distância, pelo aplicativo, com acesso individual. ${c.n_cartoes} cartões de leitura obrigatória e ${c.n_questoes} perguntas sorteadas, com aproveitamento mínimo de ${c.nota_minima}%. Carga horária: ${c.carga} minutos. Disponível de ${dia(c.abre_em)} a ${dia(c.fecha_em)}.`),
+      h('p', null, h('strong', null, 'Público-alvo: '), c.trilhas.map(t => TRILHA[t]).join(', ') + `. ${c.publico} pessoas.`),
+      h('p', null, h('strong', null, 'Responsável técnico: '), c.resp_nome + (c.resp_formacao ? ', ' + c.resp_formacao : '') + '.' + (c.resp2_nome ? ' Autoria do conteúdo: ' + c.resp2_nome + (c.resp2_formacao ? ', ' + c.resp2_formacao : '') + '.' : '')),
+      h('table', { class: 'tab' },
+        h('thead', null, h('tr', null, ['Nome', 'Função', 'Situação', 'Concluiu em', 'Acertos', 'Tempo', 'Código'].map(t => h('th', null, t)))),
+        h('tbody', null, c.pessoas.slice().sort(porNome).map(p => h('tr', null,
+          h('td', null, p.nome), h('td', null, p.funcao),
+          h('td', null, SIT[p.situacao] + (p.no_publico ? '' : ' (fora do público-alvo)')),
+          h('td', null, p.concluido_em ? dataHora(p.concluido_em) : ''),
+          h('td', null, p.acertos != null ? `${p.acertos} de ${p.total}` : ''),
+          h('td', null, p.concluido_em ? dur(p.tempo_seg) : ''),
+          h('td', null, p.codigo || ''))))))),
+    h('p', { class: 'miudo' }, 'Pessoas afastadas no mês (férias, atestado, licença) ou desligadas não entram no público-alvo, salvo se concluíram. Os horários são os do servidor, no fuso de Brasília. Cada conclusão tem um código que pode ser conferido no aplicativo.'),
+    h('div', { class: 'assin' },
+      h('div', null, 'Diego Gardin Martins', h('br'), 'Responsável Técnico - CRM-RS 44342 | RQE 45858'),
+      resp2.map(t => h('div', null, t))),
+    h('p', { class: 'miudo' }, `Emitido em ${dataHora(r.gerado_em)} por ${r.gerado_por}, pelo aplicativo Capacitações HSR.`));
+}
+async function admRelatorio() {
+  const base = S.admMes ? partes(S.admMes) : [String(new Date().getFullYear()), String(new Date().getMonth() + 1)];
+  const tipo = h('select', { class: 'campo curto' }, h('option', { value: 'mes' }, 'Um mês'), h('option', { value: 'tri' }, 'Um trimestre'));
+  const mes = h('select', { class: 'campo curto', 'aria-label': 'Mês' }, MESES.map((m, i) => h('option', { value: i + 1, selected: i + 1 === Number(base[1]) }, m)));
+  const tri = h('select', { class: 'campo curto', 'aria-label': 'Trimestre', hidden: true }, [1, 2, 3, 4].map(t => h('option', { value: t, selected: t === Math.ceil(Number(base[1]) / 3) }, `${t}º trimestre`)));
+  const ano = h('input', { class: 'campo curto', type: 'number', min: '2026', max: '2100', value: base[0], style: 'min-width:6rem;width:6.5rem', 'aria-label': 'Ano' });
+  tipo.addEventListener('change', () => { mes.hidden = tipo.value !== 'mes'; tri.hidden = tipo.value !== 'tri'; });
+  const saida = h('div');
+  const bt = h('button', { type: 'button', class: 'bt fino', style: 'width:auto;margin:0' }, 'Gerar relatório');
+  const z = n => String(n).padStart(2, '0');
+  bt.addEventListener('click', () => ocupa(bt, async () => {
+    const a = Number(ano.value);
+    let m1, m2, rotulo;
+    if (tipo.value === 'mes') { m1 = m2 = Number(mes.value); rotulo = `${MESES[m1 - 1]} de ${a}`; }
+    else { const t = Number(tri.value); m1 = (t - 1) * 3 + 1; m2 = m1 + 2; rotulo = `${t}º trimestre de ${a}`; }
+    const ini = `${a}-${z(m1)}-01`, fim = `${a}-${z(m2)}-${z(new Date(a, m2, 0).getDate())}`;
+    try {
+      const r = await arpc('cap_adm_relatorio', { p_ini: ini, p_fim: fim });
+      saida.replaceChildren(
+        h('button', { type: 'button', class: 'bt nao-imprime', onclick: () => window.print() }, 'Imprimir ou salvar em PDF'),
+        docRelatorio(r, rotulo));
+    } catch (e) { saida.replaceChildren(h('p', { class: 'erro' }, erroAdm(e))); }
+  }));
+  return [
+    h('div', { class: 'nao-imprime' },
+      h('h1', null, 'Relatório'),
+      h('p', { class: 'miudo' }, 'Sai no formato do indicador do contrato com o Estado. A apuração da Comissão é trimestral.'),
+      h('div', { class: 'filtros' }, tipo, mes, tri, ano, bt)),
+    saida
+  ];
+}
+
+// --- senha
+async function admSenha() {
+  const atual = h('input', { type: 'password', class: 'campo', autocomplete: 'current-password', required: true });
+  const nova = h('input', { type: 'password', class: 'campo', autocomplete: 'new-password', required: true, minlength: '8' });
+  const rep = h('input', { type: 'password', class: 'campo', autocomplete: 'new-password', required: true, minlength: '8' });
+  const msg = h('p', { class: 'erro', role: 'alert' });
+  const bt = h('button', { type: 'submit', class: 'bt' }, 'Trocar a senha');
+  return h('form', { style: 'max-width:26rem', onsubmit: e => {
+    e.preventDefault();
+    ocupa(bt, async () => {
+      msg.className = 'erro'; msg.textContent = '';
+      if (nova.value !== rep.value) { msg.textContent = 'A senha nova não está igual nos dois campos.'; return; }
+      try {
+        const r = await arpc('cap_adm_senha', { p_atual: atual.value, p_nova: nova.value });
+        if (r.ok) { msg.className = 'guia'; msg.textContent = 'Senha trocada.'; atual.value = nova.value = rep.value = ''; }
+        else msg.textContent = r.motivo === 'atual' ? 'A senha atual não confere.' : 'A senha nova precisa ter pelo menos 8 caracteres.';
+      } catch (err) { msg.textContent = erroAdm(err); }
+    });
+  } },
+    h('h1', null, 'Minha senha'),
+    h('p', { class: 'miudo' }, 'Esta é a senha da administração. Ela é diferente do PIN de aniversário, que serve só para fazer os cursos.'),
+    h('label', null, 'Senha atual', atual),
+    h('label', null, 'Senha nova (8 caracteres ou mais)', nova),
+    h('label', null, 'Repita a senha nova', rep),
+    msg, bt);
+}
+
+// ------------------------------------------------------------------ partida
+document.addEventListener('keydown', e => { mexeu(); if (S.onKey && !e.target.closest('input, select, textarea')) S.onKey(e); });
+document.addEventListener('click', mexeu, true);
+try {
+  history.replaceState({ cap: 0 }, '');
+  history.pushState({ cap: 1 }, '');
+  window.addEventListener('popstate', () => {
+    if (document.querySelector('dialog[open]')) { document.querySelector('dialog[open]').close(); history.pushState({ cap: 1 }, ''); return; }
+    if (S.voltar) { history.pushState({ cap: 1 }, ''); S.voltar(); } else history.back();
+  });
+} catch (e) {}
+
+if (mem.lget('cap_letra') === 'g') document.documentElement.classList.add('grande');
+const s0 = mem.get('cap_s'), a0 = mem.get('cap_a');
+if (a0 && a0.token) { S.adm = a0.token; S.admNome = a0.nome; mexeu(); carregaNomes().catch(() => {}); vAdm('adesao'); }
+else if (s0 && s0.token) { S.token = s0.token; S.nome = s0.nome; mexeu(); vInicio(); }
+else vEntrar();
+})();
+</script>
+</body>
+</html>
