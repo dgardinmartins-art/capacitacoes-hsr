@@ -31,10 +31,10 @@ p{margin:.5rem 0}
 :focus-visible{outline:3px solid var(--amarelo);outline-offset:2px}
 [hidden]{display:none!important}
 
-.topo{display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.55rem 1rem;background:var(--azul-escuro);color:#fff}
-.topo .marca{font-weight:700;font-size:1rem;line-height:1.15}
+.topo{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.4rem .6rem;padding:.55rem 1rem;background:var(--azul-escuro);color:#fff}
+.topo .marca{flex:1 1 6.5rem;font-weight:700;font-size:1rem;line-height:1.15}
 .topo .marca span{display:block;font-weight:400;font-size:.8rem;opacity:.85}
-.topo .acoes{display:flex;gap:.4rem;flex:none}
+.topo .acoes{display:flex;gap:.4rem;flex:none;margin-left:auto}
 .topo button{background:transparent;border:1.5px solid rgba(255,255,255,.65);color:#fff;border-radius:.45rem;padding:.35rem .65rem;font-size:.85rem;cursor:pointer}
 
 #app{max-width:34rem;margin:0 auto;padding:1.1rem 1rem 3.5rem}
@@ -113,12 +113,25 @@ label{display:block;font-weight:700;margin-top:.6rem}
 .opcao.marcada{border-color:var(--azul);background:var(--azul-claro)}
 .opcao.marcada .l{background:var(--azul);color:#fff}
 
-.carimbo{display:inline-block;margin:1.2rem 0 .6rem;padding:.3rem 1.1rem;transform:rotate(-7deg);border:.24rem double var(--verde);border-radius:.4rem;color:var(--verde);font-weight:700;font-size:1.7rem;letter-spacing:.14em;text-transform:uppercase}
-.carimbo.pequeno{font-size:1.1rem;margin:.6rem 0}
+.carimbo{display:inline-block;margin:1.2rem 0 .6rem;padding:.3rem 1.1rem;transform:rotate(-7deg);border:.24rem double var(--verde);border-radius:.4rem;color:var(--verde);font-weight:700;font-size:min(1.7rem,8vw);letter-spacing:.14em;text-transform:uppercase}
+.carimbo.pequeno{font-size:min(1.1rem,6vw);margin:.6rem 0}
 .rev{background:var(--papel);border:1px solid var(--linha);border-radius:.6rem;padding:.7rem .9rem;margin:.6rem 0}
 .rev-q{font-weight:700}
 .rev-sua{color:var(--vermelho)}
 .rev-certa{color:var(--verde);font-weight:700}
+
+.estrelas{display:inline-flex;gap:.2rem;vertical-align:middle}
+.estrelas svg{display:block;width:1.5rem;height:1.5rem;fill:var(--papel);stroke:#9fb3c8;stroke-width:1.6;stroke-linejoin:round}
+.estrelas svg.on{fill:var(--amarelo);stroke:#a87900}
+.estrelas.grande{gap:.5rem;margin:.5rem 0 .1rem}
+.estrelas.grande svg{width:min(3.7rem,22vw);height:min(3.7rem,22vw);stroke-width:1.2}
+.estrelas.mini svg{width:.95rem;height:.95rem}
+.estrelas.pop svg.on{animation:pop .5s cubic-bezier(.2,1.5,.4,1) both;animation-delay:calc(var(--i) * .3s + .25s)}
+@keyframes pop{from{transform:scale(.1) rotate(-30deg);opacity:0}to{transform:none;opacity:1}}
+.nota{display:flex;align-items:center;gap:.6rem;margin:.35rem 0 .2rem;font-weight:700}
+.regua{background:var(--papel);border:1px solid var(--linha);border-radius:.6rem;padding:.6rem .9rem;margin:.8rem 0}
+.regua p{margin:0 0 .25rem}
+.regua div{display:flex;align-items:center;gap:.7rem;padding:.2rem 0}
 
 .comp,.rel{background:var(--papel);border:1px solid var(--linha);border-radius:.4rem;padding:1.4rem 1.2rem}
 .comp-org{margin:0;font-weight:700;font-size:1.1rem;color:var(--azul-escuro)}
@@ -163,7 +176,7 @@ dialog::backdrop{background:rgba(16,38,59,.55)}
 .assin{display:flex;flex-wrap:wrap;gap:2rem;margin-top:3.5rem}
 .assin div{flex:1;min-width:14rem;border-top:1px solid var(--tinta);padding-top:.3rem;text-align:center;font-size:.9rem}
 
-@media (prefers-reduced-motion:reduce){.ficha.vira{animation:none}}
+@media (prefers-reduced-motion:reduce){.ficha.vira,.estrelas.pop svg.on{animation:none}}
 @media print{
   @page{size:A4;margin:16mm 14mm}
   html,html.grande{font-size:11pt}
@@ -251,6 +264,32 @@ const SIT = { feito: 'Feito', pendente: 'Não começou', andamento: 'Em andament
 const ST = { rascunho: 'rascunho', publicado: 'publicado', encerrado: 'encerrado' };
 const LETRAS = 'ABCDE';
 const porNome = (a, b) => a.nome.localeCompare(b.nome, 'pt-BR');
+
+// Estrelas de quem passou: 3 com tudo certo, 2 com 80% ou mais, 1 nos demais casos (com 5 perguntas: 5, 4 e 3 acertos).
+const nEstrelas = (a, t) => (a == null || !t) ? 0 : a >= t ? 3 : a * 5 >= t * 4 ? 2 : 1;
+const acertosTxt = n => n === 1 ? '1 acerto' : n + ' acertos';
+const SVG = 'http://www.w3.org/2000/svg';
+function estrelas(n, classe) {
+  const box = h('span', { class: 'estrelas' + (classe ? ' ' + classe : ''), role: 'img', 'aria-label': n === 1 ? '1 estrela de 3' : n + ' estrelas de 3' });
+  for (let i = 0; i < 3; i++) {
+    const s = document.createElementNS(SVG, 'svg'), p = document.createElementNS(SVG, 'path');
+    s.setAttribute('viewBox', '0 0 24 24'); s.setAttribute('aria-hidden', 'true'); s.setAttribute('focusable', 'false');
+    if (i < n) s.setAttribute('class', 'on');
+    s.style.setProperty('--i', i);
+    p.setAttribute('d', 'M12 2.5l2.94 5.96 6.56.95-4.75 4.63 1.12 6.54L12 17.5l-5.87 3.08 1.12-6.54L2.5 9.41l6.56-.95z');
+    s.append(p); box.append(s);
+  }
+  return box;
+}
+function regua(n, min) {
+  const t2 = Math.ceil(n * 0.8), fx = [];
+  if (min < Math.min(t2, n)) fx.push([1, min, Math.min(t2, n) - 1]);
+  if (t2 < n && Math.max(t2, min) <= n - 1) fx.push([2, Math.max(t2, min), n - 1]);
+  fx.push([3, n, n]);
+  return h('div', { class: 'regua' },
+    h('p', { class: 'miudo' }, 'Quanto mais acertos, mais estrelas:'),
+    fx.map(([e, de, ate]) => h('div', null, estrelas(e), h('span', null, de === ate ? acertosTxt(de) : `${de} a ${ate} acertos`))));
+}
 
 class Erro extends Error { constructor(cod) { super(cod); this.cod = cod; } }
 async function rpc(fn, args) {
@@ -444,15 +483,18 @@ function vPin(p) {
 }
 
 // ------------------------------------------------------------------ início do funcionário
+const linhaNota = (a, t) => nEstrelas(a, t) ? h('p', { class: 'nota' }, estrelas(nEstrelas(a, t)), `${a} de ${t} acertos`) : null;
 function cartaoCurso(c) {
   const feito = c.estado === 'feito';
+  const est = feito ? nEstrelas(c.acertos, c.total) : 0;
   return h('section', { class: 'curso' + (feito ? ' ok' : '') },
     h('p', { class: feito ? 'selo' : 'prazo' }, feito ? 'Feito em ' + dataHora(c.feito_em) : 'Prazo: até ' + diaExt(c.fecha_em)),
     h('h2', null, c.titulo),
     c.teste ? h('p', { class: 'miudo' }, 'Demonstração. Só a administração vê este curso.') : null,
-    feito ? null : h('p', null, `${c.n_cartoes} cartões e ${c.n_questoes} perguntas. Leva uns ${c.carga} minutos.`),
+    feito ? linhaNota(c.acertos, c.total) : h('p', null, `${c.n_cartoes} cartões e ${c.n_questoes} perguntas. Leva uns ${c.carga} minutos.`),
     feito
-      ? h('button', { type: 'button', class: 'bt sec', onclick: e => ocupa(e.currentTarget, () => vComprovante(c.id)) }, 'Ver comprovante')
+      ? [h('button', { type: 'button', class: 'bt sec', onclick: e => ocupa(e.currentTarget, () => vComprovante(c.id)) }, 'Ver comprovante'),
+         est > 0 && est < 3 ? h('button', { type: 'button', class: 'bt sec', onclick: e => ocupa(e.currentTarget, () => vCurso(c.id)) }, 'Tentar de novo para ganhar 3 estrelas') : null]
       : h('button', { type: 'button', class: 'bt', onclick: e => ocupa(e.currentTarget, () => vCurso(c.id)) },
           c.estado === 'novo' ? 'Começar' : c.estado === 'quiz' ? 'Fazer as perguntas' : `Continuar do cartão ${c.cartao_atual + 1}`));
 }
@@ -473,6 +515,7 @@ async function vInicio() {
     antigos.length ? [h('h2', null, 'O que eu já fiz'), antigos.map(x => h('section', { class: 'curso ok' },
       h('p', { class: 'selo' }, 'Feito em ' + dataHora(x.feito_em)),
       h('h2', null, x.titulo),
+      linhaNota(x.acertos, x.total),
       h('button', { type: 'button', class: 'bt sec fino', onclick: e => ocupa(e.currentTarget, () => vComprovante(x.curso)) }, 'Ver comprovante')))] : null,
     h('button', { type: 'button', class: 'bt sec', onclick: () => sair() }, 'Sair'));
 }
@@ -482,7 +525,8 @@ async function vCurso(id) {
   let d;
   try { d = await frpc('cap_abrir', { p_curso: id }); } catch (e) { return erroFluxo(e, () => vInicio()); }
   S.curso = d;
-  if (d.etapa === 'feito') return vInicio();
+  // quem já concluiu sem acertar todas pode responder de novo para ganhar mais estrelas
+  if (d.etapa === 'feito') return (d.acertos != null && d.acertos < d.total) ? vAntesQuiz() : vInicio();
   if (d.etapa === 'quiz') return vAntesQuiz();
   return vCartao(Math.min(d.cartao_atual, d.cartoes.length - 1), false);
 }
@@ -490,7 +534,7 @@ function vCartao(i, virado) {
   const d = S.curso, n = d.cartoes.length, c = d.cartoes[i];
   const visto = i < d.cartao_atual, ultimo = i === n - 1;
   const cab = h('div', { class: 'cab' },
-    h('button', { type: 'button', class: 'link', onclick: () => vInicio() }, 'Sair e continuar depois'),
+    h('button', { type: 'button', class: 'link', onclick: () => vInicio() }, d.etapa === 'feito' ? 'Voltar ao início' : 'Sair e continuar depois'),
     h('span', null, `Cartão ${i + 1} de ${n}`));
   const passos = h('div', { class: 'passos', role: 'img', 'aria-label': `Cartão ${i + 1} de ${n}` },
     d.cartoes.map((_, k) => h('i', { class: k === i ? 'aqui' : k < d.cartao_atual ? 'ok' : '' })));
@@ -547,13 +591,25 @@ function vCartao(i, virado) {
 
 // ------------------------------------------------------------------ perguntas
 function vAntesQuiz() {
-  const d = S.curso;
+  const d = S.curso, c = d.curso;
+  const comecar = h('button', { type: 'button', class: 'bt', 'data-foco': true, onclick: e => ocupa(e.currentTarget, vQuiz) }, 'Começar as perguntas');
+  const rever = h('button', { type: 'button', class: 'bt sec', onclick: () => vCartao(0, false) }, 'Rever os cartões');
+  if (d.etapa === 'feito') {
+    return mostra({ voltar: () => vInicio() },
+      h('h1', null, 'Tentar mais estrelas'),
+      linhaNota(d.acertos, d.total),
+      h('p', { class: 'guia' }, 'Você já concluiu esta capacitação. Responda as perguntas de novo para ganhar mais estrelas.'),
+      h('p', null, 'Se acertar menos, nada muda: vale o seu melhor resultado.'),
+      regua(c.n_questoes, c.minimo),
+      comecar, rever,
+      h('button', { type: 'button', class: 'link', onclick: () => vInicio() }, 'Voltar ao início'));
+  }
   mostra({ voltar: () => vCartao(d.cartoes.length - 1, true) },
     h('h1', null, 'Agora, as perguntas'),
-    h('p', { class: 'guia' }, `São ${d.curso.n_questoes} perguntas sobre o que você acabou de ler. Para concluir, acerte pelo menos ${d.curso.minimo}.`),
+    h('p', { class: 'guia' }, `São ${c.n_questoes} perguntas sobre o que você acabou de ler. Para concluir, acerte pelo menos ${c.minimo}.`),
+    regua(c.n_questoes, c.minimo),
     h('p', null, 'Se não conseguir, você pode rever os cartões e tentar de novo.'),
-    h('button', { type: 'button', class: 'bt', 'data-foco': true, onclick: e => ocupa(e.currentTarget, vQuiz) }, 'Começar as perguntas'),
-    h('button', { type: 'button', class: 'bt sec', onclick: () => vCartao(0, false) }, 'Rever os cartões'),
+    comecar, rever,
     h('button', { type: 'button', class: 'link', onclick: () => vInicio() }, 'Sair e continuar depois'));
 }
 async function vQuiz() {
@@ -608,22 +664,41 @@ function vResultado(r) {
       x.sua ? h('p', { class: 'rev-sua' }, 'Você marcou: ' + x.sua) : null,
       h('p', { class: 'rev-certa' }, 'O certo é: ' + x.certa),
       x.explicacao ? h('p', null, x.explicacao) : null))] : null;
-  if (r.aprovado) {
+  // r.melhor é o resultado que vale (o melhor até aqui); só existe para quem já concluiu
+  const m = r.melhor || (r.aprovado ? { acertos: r.acertos, total: r.total } : null);
+  if (!m) {
     return mostra({},
-      h('div', { class: 'centro' }, h('div', { class: 'carimbo' }, 'Concluído')),
-      h('h1', null, 'Parabéns, ' + primeiro(S.nome) + '!'),
-      h('p', { class: 'guia' }, `Você acertou ${r.acertos} de ${r.total}. A capacitação está concluída.`),
-      h('button', { type: 'button', class: 'bt', 'data-foco': true, onclick: e => ocupa(e.currentTarget, () => vComprovante(r.curso)) }, 'Ver comprovante'),
-      h('button', { type: 'button', class: 'bt sec', onclick: () => vInicio() }, 'Voltar ao início'),
-      rev);
+      h('h1', null, 'Ainda não foi desta vez'),
+      h('p', { class: 'guia' }, `Você acertou ${r.acertos} de ${r.total}. Para concluir, precisa acertar ${r.minimo}.`),
+      rev,
+      h('button', { type: 'button', class: 'bt', onclick: e => ocupa(e.currentTarget, vQuiz) }, 'Tentar de novo'),
+      h('button', { type: 'button', class: 'bt sec', onclick: () => vCartao(0, false) }, 'Rever os cartões'),
+      h('button', { type: 'button', class: 'link', onclick: () => vInicio() }, 'Sair e continuar depois'));
   }
+  const est = nEstrelas(m.acertos, m.total);
+  if (S.curso) { S.curso.etapa = 'feito'; S.curso.acertos = m.acertos; S.curso.total = m.total; }
+  const inicio = h('button', { type: 'button', class: 'bt sec', onclick: () => vInicio() }, 'Voltar ao início');
+  if (r.aprovado && (!r.ja_concluido || r.melhorou)) {
+    // primeira aprovação, ou nova tentativa que melhorou o resultado
+    return mostra({},
+      h('div', { class: 'centro' },
+        r.ja_concluido ? null : h('div', { class: 'carimbo' }, 'Concluído'),
+        h('div', null, estrelas(est, 'grande pop'))),
+      h('h1', null, !r.ja_concluido ? 'Parabéns, ' + primeiro(S.nome) + '!' : est === 3 ? 'Você chegou às 3 estrelas!' : `Você subiu para ${est} estrelas!`),
+      h('p', { class: 'guia' }, r.ja_concluido ? `Agora o seu resultado é ${r.acertos} de ${r.total}.` : `Você acertou ${r.acertos} de ${r.total}. A capacitação está concluída.`),
+      est < 3 ? h('p', null, `Acertando as ${r.total}, você ganha as 3 estrelas.`) : null,
+      h('button', { type: 'button', class: 'bt', 'data-foco': true, onclick: e => ocupa(e.currentTarget, () => vComprovante(r.curso)) }, 'Ver comprovante'),
+      est < 3 ? h('button', { type: 'button', class: 'bt sec', onclick: e => ocupa(e.currentTarget, vQuiz) }, 'Tentar de novo para ganhar 3 estrelas') : null,
+      inicio, rev);
+  }
+  // já tinha concluído e desta vez não acertou mais do que antes
   mostra({},
-    h('h1', null, 'Ainda não foi desta vez'),
-    h('p', { class: 'guia' }, `Você acertou ${r.acertos} de ${r.total}. Para concluir, precisa acertar ${r.minimo}.`),
-    rev,
+    h('h1', null, 'Valeu a tentativa'),
+    h('p', { class: 'guia' }, `Desta vez você acertou ${r.acertos} de ${r.total}. Nada muda: vale o seu melhor resultado.`),
+    linhaNota(m.acertos, m.total),
     h('button', { type: 'button', class: 'bt', onclick: e => ocupa(e.currentTarget, vQuiz) }, 'Tentar de novo'),
     h('button', { type: 'button', class: 'bt sec', onclick: () => vCartao(0, false) }, 'Rever os cartões'),
-    h('button', { type: 'button', class: 'link', onclick: () => vInicio() }, 'Sair e continuar depois'));
+    inicio, rev);
 }
 
 // ------------------------------------------------------------------ comprovante
@@ -760,7 +835,7 @@ function blocoCurso(c) {
       h('td', null, p.nome), h('td', null, p.funcao), h('td', null, TRILHA[p.trilha]),
       h('td', null, h('span', { class: 'tag ' + p.situacao }, SIT[p.situacao] + (p.situacao === 'andamento' ? `, cartão ${p.cartao_atual}` : ''))),
       h('td', null, p.concluido_em ? dataHora(p.concluido_em) : ''),
-      h('td', null, p.acertos != null ? `${p.acertos} de ${p.total}` : ''),
+      h('td', { style: 'white-space:nowrap' }, p.acertos != null ? [`${p.acertos} de ${p.total} `, estrelas(nEstrelas(p.acertos, p.total), 'mini')] : ''),
       h('td', null, p.tentativas ? String(p.tentativas) : ''),
       h('td', null, p.tempo_seg ? dur(p.tempo_seg) : ''),
       h('td', null, (p.alertas || []).map(a => h('div', { class: 'alerta' }, a)))))
@@ -798,6 +873,13 @@ async function admAdesao() {
     d.cursos.map(blocoCurso)
   ];
 }
+// resumo do aparelho para a auditoria (o texto completo do navegador fica na dica ao passar o mouse)
+function aparelhoTxt(ua) {
+  ua = ua || '';
+  const so = /Android/.test(ua) ? 'Android' : /iPhone|iPad|iPod/.test(ua) ? 'iPhone ou iPad' : /Windows/.test(ua) ? 'Windows' : /Mac OS X/.test(ua) ? 'Mac' : /Linux/.test(ua) ? 'Linux' : '';
+  const nav = /SamsungBrowser/.test(ua) ? 'Samsung Internet' : /Edg\//.test(ua) ? 'Edge' : /OPR\//.test(ua) ? 'Opera' : /Firefox\//.test(ua) ? 'Firefox' : /Chrome\//.test(ua) ? 'Chrome' : /Safari\//.test(ua) ? 'Safari' : '';
+  return [so, nav].filter(Boolean).join(', ') || ua.slice(0, 40);
+}
 async function admDetalhe(p, c) {
   const dlg = h('dialog');
   const fecha = () => { dlg.close(); dlg.remove(); };
@@ -823,9 +905,12 @@ async function admDetalhe(p, c) {
       h('tbody', null, d.tentativas.map(t => h('tr', null,
         h('td', null, String(t.numero)), h('td', null, dataHora(t.iniciada_em)), h('td', null, t.finalizada_em ? dataHora(t.finalizada_em) : 'não enviou'),
         h('td', null, t.acertos != null ? `${t.acertos} de ${t.total}` : ''),
-        h('td', null, t.aprovado == null ? '' : t.aprovado ? 'aprovado' : 'não atingiu'),
+        h('td', null, t.aprovado == null ? '' : t.aprovado
+          ? [h('span', { style: 'white-space:nowrap' }, 'aprovado ', estrelas(nEstrelas(t.acertos, t.total), 'mini')),
+             d.comprovante && t.codigo && t.codigo === d.comprovante.codigo ? [' ', h('span', { class: 'tag feito' }, 'é a que vale')] : null]
+          : 'não atingiu'),
         h('td', null, t.tempo_seg != null ? dur(t.tempo_seg) : ''),
-        h('td', null, t.ip || ''), h('td', null, (t.user_agent || '').slice(0, 70)))))))] : null,
+        h('td', null, t.ip || ''), h('td', { title: t.user_agent || '' }, aparelhoTxt(t.user_agent)))))))] : null,
     log.length ? [h('h2', null, 'Tempo em cada cartão'), h('p', { class: 'miudo' }, log.map(x => `${x.o}: ${x.s} s`).join(' | '))] : null,
     d.acessos.length ? [h('h2', null, 'Últimas entradas no sistema'), h('p', { class: 'miudo' }, d.acessos.map(a => dataHora(a.em) + (a.ok ? '' : ' (PIN errado)')).join(' | '))] : null,
     h('div', { class: 'dupla' },
@@ -947,7 +1032,7 @@ async function admCurso(id) {
   try { c = await arpc('cap_adm_curso', { p_id: id }); } catch (e) { fecha(); erroAdm(e); return; }
   poe(dlg,
     h('h2', { style: 'margin-top:0' }, c.titulo),
-    h('p', { class: 'miudo' }, `${mesExt(c.competencia)}. Para: ${c.trilhas.map(t => TRILHA[t]).join(', ')}. Carga horária: ${c.carga_horaria_min} minutos. Nota mínima: ${c.nota_minima}%. ${c.n_questoes} perguntas por tentativa, sorteadas de ${c.questoes.length}.`),
+    h('p', { class: 'miudo' }, `${mesExt(c.competencia)}. Para: ${c.trilhas.map(t => TRILHA[t]).join(', ')}. Carga horária: ${c.carga_horaria_min} minutos. Para passar: ${Math.ceil(c.n_questoes * c.nota_minima / 100)} de ${c.n_questoes} acertos (${c.nota_minima}%). ${c.n_questoes} perguntas por tentativa, sorteadas de ${c.questoes.length}.`),
     h('p', null, h('strong', null, 'Objetivo: '), c.objetivo),
     h('p', null, h('strong', null, 'Conteúdo: '), c.conteudo),
     h('p', null, h('strong', null, 'Texto-base: '), c.fonte),
@@ -1021,7 +1106,7 @@ function docRelatorio(r, periodo) {
       h('p', null, h('strong', null, 'Objetivo: '), c.objetivo),
       h('p', null, h('strong', null, 'Conteúdo ministrado: '), c.conteudo),
       h('p', null, h('strong', null, 'Texto-base: '), c.fonte),
-      h('p', null, h('strong', null, 'Modalidade e critério: '), `a distância, pelo aplicativo, com acesso individual. ${c.n_cartoes} cartões de leitura obrigatória e ${c.n_questoes} perguntas sorteadas, com aproveitamento mínimo de ${c.nota_minima}%. Carga horária: ${c.carga} minutos. Disponível de ${dia(c.abre_em)} a ${dia(c.fecha_em)}.`),
+      h('p', null, h('strong', null, 'Modalidade e critério: '), `a distância, pelo aplicativo, com acesso individual. ${c.n_cartoes} cartões de leitura obrigatória e ${c.n_questoes} perguntas sorteadas a cada tentativa, com aproveitamento mínimo de ${c.nota_minima}% (${Math.ceil(c.n_questoes * c.nota_minima / 100)} de ${c.n_questoes} acertos). Carga horária: ${c.carga} minutos. Disponível de ${dia(c.abre_em)} a ${dia(c.fecha_em)}.`),
       h('p', null, h('strong', null, 'Público-alvo: '), c.trilhas.map(t => TRILHA[t]).join(', ') + `. ${c.publico} pessoas.`),
       h('p', null, h('strong', null, 'Responsável técnico: '), c.resp_nome + (c.resp_formacao ? ', ' + c.resp_formacao : '') + '.' + (c.resp2_nome ? ' Autoria do conteúdo: ' + c.resp2_nome + (c.resp2_formacao ? ', ' + c.resp2_formacao : '') + '.' : '')),
       h('table', { class: 'tab' },
@@ -1033,7 +1118,7 @@ function docRelatorio(r, periodo) {
           h('td', null, p.acertos != null ? `${p.acertos} de ${p.total}` : ''),
           h('td', null, p.concluido_em ? dur(p.tempo_seg) : ''),
           h('td', null, p.codigo || ''))))))),
-    h('p', { class: 'miudo' }, 'Pessoas afastadas no mês (férias, atestado, licença) ou desligadas não entram no público-alvo, salvo se concluíram. Os horários são os do servidor, no fuso de Brasília. Cada conclusão tem um código que pode ser conferido no aplicativo.'),
+    h('p', { class: 'miudo' }, 'Pessoas afastadas no mês (férias, atestado, licença) ou desligadas não entram no público-alvo, salvo se concluíram. Os horários são os do servidor, no fuso de Brasília. A data é a da primeira aprovação e os acertos são o melhor resultado de cada pessoa. Cada conclusão tem um código que pode ser conferido no aplicativo.'),
     h('div', { class: 'assin' },
       h('div', null, 'Diego Gardin Martins', h('br'), 'Responsável Técnico - CRM-RS 44342 | RQE 45858'),
       resp2.map(t => h('div', null, t))),
