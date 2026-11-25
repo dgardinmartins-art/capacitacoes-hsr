@@ -23,7 +23,7 @@
 *,*::before,*::after{box-sizing:border-box}
 html{font-size:112.5%;-webkit-text-size-adjust:100%}
 html.grande{font-size:137.5%}
-body{margin:0;background:var(--fundo);color:var(--tinta);font-family:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.45}
+body{margin:0;background:var(--fundo);color:var(--tinta);font-family:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.45;overflow-wrap:break-word}
 button,input,select{font:inherit;color:inherit}
 h1{font-size:1.7rem;line-height:1.15;margin:.2rem 0 .6rem}
 h2{font-size:1.25rem;line-height:1.2;margin:1.4rem 0 .5rem}
@@ -99,11 +99,13 @@ label{display:block;font-weight:700;margin-top:.6rem}
 
 .ficha{position:relative;margin:2.9rem 0 1rem;padding:1.5rem 1.1rem 1.3rem;min-height:11.5rem;background:var(--papel);border:1px solid var(--linha);border-top:.3rem solid var(--azul);border-radius:0 .8rem .8rem .8rem;box-shadow:0 3px 0 var(--linha)}
 .ficha .aba{position:absolute;left:-1px;bottom:100%;padding:.25rem .9rem .15rem;border-radius:.5rem .5rem 0 0;background:var(--azul);color:#fff;font-weight:700;font-size:.95rem}
-.ficha .txt{margin:0;font-size:1.45rem;line-height:1.3;font-weight:700}
+.ficha .txt{margin:0;font-size:1.45rem;line-height:1.3;font-weight:700;white-space:pre-line}
 .ficha.resposta{border-top-color:var(--verde)}
 .ficha.resposta .aba{background:var(--verde)}
 .ficha.resposta .perg{margin:0 0 .8rem;padding-bottom:.7rem;border-bottom:1px dashed var(--linha);font-size:1rem;color:var(--tinta-suave)}
 .ficha.resposta .txt{font-weight:400;font-size:1.3rem;line-height:1.4}
+.ficha .fonte{margin:1rem 0 0;padding-top:.5rem;border-top:1px solid var(--linha);font-size:.82rem;line-height:1.35;color:var(--tinta-suave);overflow-wrap:anywhere}
+.quebra{white-space:pre-line}
 .ficha.vira{transform-origin:top center;animation:vira .2s ease-out}
 @keyframes vira{from{transform:perspective(60rem) rotateX(-28deg);opacity:.35}to{transform:none;opacity:1}}
 
@@ -490,7 +492,7 @@ function cartaoCurso(c) {
   return h('section', { class: 'curso' + (feito ? ' ok' : '') },
     h('p', { class: feito ? 'selo' : 'prazo' }, feito ? 'Feito em ' + dataHora(c.feito_em) : 'Prazo: até ' + diaExt(c.fecha_em)),
     h('h2', null, c.titulo),
-    c.teste ? h('p', { class: 'miudo' }, 'Demonstração. Só a administração vê este curso.') : null,
+    c.teste ? h('p', { class: 'miudo' }, 'Em teste: ainda não liberado para os demais funcionários.') : null,
     feito ? linhaNota(c.acertos, c.total) : h('p', null, `${c.n_cartoes} cartões e ${c.n_questoes} perguntas. Leva uns ${c.carga} minutos.`),
     feito
       ? [h('button', { type: 'button', class: 'bt sec', onclick: e => ocupa(e.currentTarget, () => vComprovante(c.id)) }, 'Ver comprovante'),
@@ -569,7 +571,8 @@ function vCartao(i, virado) {
   mostra({ voltar },
     cab, passos,
     h('article', { class: 'ficha resposta vira' }, h('span', { class: 'aba' }, 'Resposta'),
-      h('p', { class: 'perg' }, c.frente), h('p', { class: 'txt' }, c.verso)),
+      h('p', { class: 'perg' }, c.frente), h('p', { class: 'txt' }, c.verso),
+      c.fonte ? h('p', { class: 'fonte' }, 'Fonte: ' + c.fonte) : null),
     msg, prox,
     h('div', { class: 'apoio' }, btOuvir(() => c.verso), anterior));
 
@@ -707,7 +710,7 @@ function docComprovante(c) {
   return h('article', { class: 'comp' },
     h('p', { class: 'comp-org' }, 'Hospital São Roque', h('br'), h('span', null, 'Sociedade Hospitalar de Caiçara - CNPJ 90.899.444/0001-01')),
     h('h1', null, 'Comprovante de capacitação'),
-    c.teste ? h('p', { class: 'aviso' }, 'Demonstração: este comprovante não vale como registro.') : null,
+    c.teste ? h('p', { class: 'aviso' }, 'Curso em teste: este comprovante ainda não vale como registro.') : null,
     h('p', { class: 'comp-txt' }, 'Comprovamos que ', h('strong', null, c.nome), c.funcao ? ` (${c.funcao})` : '',
       ' concluiu a capacitação ', h('strong', null, c.titulo), ', referente a ' + mesExt(c.competencia) + '.'),
     h('dl', null,
@@ -745,7 +748,7 @@ function vConferir() {
               h('p', { class: 'selo' }, 'Comprovante verdadeiro'),
               h('h2', null, r.titulo),
               h('p', null, `${r.nome}${r.funcao ? ' (' + r.funcao + ')' : ''} concluiu em ${dataHora(r.concluido_em)}, com ${r.acertos} de ${r.total} acertos. Carga horária: ${r.carga} minutos.`),
-              r.teste ? h('p', { class: 'miudo' }, 'Curso de demonstração: não vale como registro.') : null)
+              r.teste ? h('p', { class: 'miudo' }, 'Curso em teste: ainda não vale como registro.') : null)
           : h('p', { class: 'erro' }, 'Código não encontrado. Confira as letras e os números.'));
       } catch (e) { saida.replaceChildren(h('p', { class: 'erro' }, textoErro(e))); }
     });
@@ -848,8 +851,8 @@ function blocoCurso(c) {
   pinta();
   const lista = `Capacitação "${c.titulo}" - prazo até ${dia(c.fecha_em)}\nAinda não concluíram (${pend.length}):\n` + pend.map(p => '- ' + p.nome).join('\n');
   return h('section', { class: 'bloco' },
-    h('h2', null, c.titulo + (c.teste ? ' (demonstração)' : '')),
-    h('p', { class: 'miudo' }, `Para: ${c.trilhas.map(t => TRILHA[t]).join(', ')}. Prazo: ${dia(c.fecha_em)}. Situação do curso: ${ST[c.status]}.` + (c.teste ? ' Não entra no indicador nem no relatório.' : '')),
+    h('h2', null, c.titulo + (c.teste ? ' (em teste)' : '')),
+    h('p', { class: 'miudo' }, `Para: ${c.trilhas.map(t => TRILHA[t]).join(', ')}. Prazo: ${dia(c.fecha_em)}. Situação do curso: ${ST[c.status]}.` + (c.teste ? ' Em teste: não entra no indicador nem no relatório.' : '')),
     h('div', { class: 'barra', role: 'img', 'aria-label': `${c.feitos} de ${c.publico} concluíram` }, h('i', { style: `width:${c.publico ? c.feitos * 100 / c.publico : 0}%` })),
     h('p', null, h('strong', null, `${c.feitos} de ${c.publico} concluíram (${pct(c.feitos, c.publico)})`)),
     h('div', { class: 'filtros nao-imprime' }, chips,
@@ -1038,7 +1041,8 @@ async function admCurso(id) {
     h('p', null, h('strong', null, 'Texto-base: '), c.fonte),
     h('p', null, h('strong', null, 'Responsável técnico: '), c.resp_nome + (c.resp2_nome ? '. Autoria do conteúdo: ' + c.resp2_nome : '')),
     h('h2', null, `Cartões (${c.cartoes.length})`),
-    c.cartoes.map(k => h('div', { class: 'rev' }, h('p', { class: 'rev-q' }, `${k.ordem}. ${k.frente}`), h('p', null, k.verso))),
+    c.cartoes.map(k => h('div', { class: 'rev' }, h('p', { class: 'rev-q' }, `${k.ordem}. ${k.frente}`), h('p', { class: 'quebra' }, k.verso),
+      h('p', { class: 'miudo' }, k.fonte ? 'Fonte: ' + k.fonte : 'Sem fonte informada.'))),
     h('h2', null, `Banco de perguntas (${c.questoes.length})`),
     c.questoes.map((q, i) => h('div', { class: 'rev' }, h('p', { class: 'rev-q' }, `${i + 1}. ${q.enunciado}`),
       q.alternativas.map((a, k) => h('p', { class: k === q.correta ? 'rev-certa' : '' }, (k === q.correta ? 'Certa: ' : 'Errada: ') + a)),
@@ -1064,7 +1068,7 @@ async function admCursos() {
         const prazo = h('input', { type: 'date', class: 'campo mini', style: 'width:9.5rem', value: c.fecha_em, min: c.abre_em, 'aria-label': 'Prazo de ' + c.titulo });
         return h('tr', null,
           h('td', null, mesExt(c.competencia)),
-          h('td', null, c.titulo + (c.teste ? ' (demonstração)' : '')),
+          h('td', null, c.titulo + (c.teste ? ' (em teste)' : '')),
           h('td', null, c.trilhas.map(t => TRILHA[t]).join(', ')),
           h('td', null, String(c.n_cartoes)),
           h('td', null, `${c.n_questoes} de ${c.n_banco}`),
